@@ -1,9 +1,9 @@
 const path = require('path');
-require('dotenv').config({ path: path.join(path.join(__dirname, '..'), '.env') });
+require('dotenv').config({ path: path.join(path.join(__dirname, '..'), '.env') }); //The .env fiel will be in the "Web-App folder"
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const outputURL = require('./functions/OutputURL');
+const outputURL = require('./Helper-Functions/OutputURL');
 
 
 // Uses port number that is given in an
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false })); //Allows us to parse data from
 // Routes
 app.get('/', (req, res) => {
   //res.send('Hello World!')
-  const name = 'John';
+  const name = 'Colin';
   res.render('index.ejs', { name });
 })
 
@@ -38,5 +38,7 @@ app.get('/', (req, res) => {
 // Listens to a specific port number 
 // and displays the port number
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`)
+  const time = new Date().toLocaleTimeString();
+  
+    console.log(`Server started on port ${PORT}` + ' at ' + time)
 });
