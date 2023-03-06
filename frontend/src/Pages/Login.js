@@ -22,7 +22,7 @@ function Login() {
         body: JSON.stringify(loginInfo)
       })
       .then(response => response.json())
-      .then(data => console.log('done'))
+      .then(data => console.log(data.v))
       .catch(error => console.error(error));
   }
 
