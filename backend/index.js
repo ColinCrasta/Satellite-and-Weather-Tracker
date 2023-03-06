@@ -88,9 +88,9 @@ app.post('/database', async (req, res) => {
     const resetQuery = `
     INSERT INTO satellite ("satID", name) VALUES (5, 'telesat5');
 
-    INSERT INTO users ("userID", username, password, "accessRights", admin, approved) VALUES (13, 'colincrasta', 'colin1306', '1:2:3', true, true);
+    INSERT INTO users ("userID", username, password, "accessRights", admin, approved, "loggedIn") VALUES (13, 'colincrasta', 'colin1306', '1:2:3', true, true, false);
 
-    INSERT INTO users ("userID", username, password, "accessRights", admin, approved) VALUES (10, 'testing', 'testing', '1:2:3', false, false);
+    INSERT INTO users ("userID", username, password, "accessRights", admin, approved, "loggedIn") VALUES (10, 'testing', 'testing', '1:2:3', false, false, false);
 
     INSERT INTO "satRequest" ("satRequestID", "userID", "satID", "lastAltitude", "lastLocation", "lastOrbitalSpeed", "lastOrbitalPeriod", "lastPositionVector", "dateRecorded") VALUES (2, 13, 5, 25000, '0:0', 100, 65, '0:0:0', '12:45:13 am');
 

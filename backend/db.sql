@@ -32,7 +32,7 @@ CREATE TABLE "satRequest" (
 	"lastAltitude" integer,
 	"lastLocation" varchar,
 	"lastOrbitalSpeed" integer,
-	"LastOrbitalPeriod" integer,
+	"lastOrbitalPeriod" integer,
 	"lastPositionVector" varchar,
 	"dateRecorded" varchar NOT NULL,
 	CONSTRAINT "satRequest_pk" PRIMARY KEY ("satRequestID")
