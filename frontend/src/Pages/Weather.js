@@ -1,12 +1,23 @@
-import React from "react";
+import React from 'react';
+import Mapbox from './Components/Mapbox';
+
+
+
+
 
 
 function Weather() {
+
+ 
+          
+    
     return(
-        <div>
+        <div >
             <h1>
                 Weather
             </h1>
+            <Mapbox />
+            
         </div>
 
     );

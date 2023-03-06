@@ -5,6 +5,7 @@ import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 
 
+
 // The BrowserRouter pays attention to the endpoint given
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
