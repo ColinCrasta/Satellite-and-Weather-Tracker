@@ -11,18 +11,27 @@ function Login() {
   const [name, setName] = useState("n/a");
   const [pw, setPW] = useState("n/a");
 
-//   const fetchLogin = () => {
-//     fetch('https://jsonplaceholder.typicode.com/posts')
-//       .then(response => response.json())
-//       .then(data => setData(data))
-//       .catch(error => console.error(error));
-//   }
+
+  const fetchLogin = (uname, pword) => {
+    const loginInfo = {username: uname, password: pword};
+    fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginInfo)
+      })
+      .then(response => response.json())
+      .then(data => console.log('done'))
+      .catch(error => console.error(error));
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event);
     console.log("Username:", name);
     console.log("Password:", pw);
+    fetchLogin(name, pw);
   };
 
 
