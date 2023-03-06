@@ -1,11 +1,11 @@
 import React from "react";
 
 
-function About() {
+function Positioning() {
     return(
         <div>
             <h1>
-                About Me
+                Positioning
             </h1>
         </div>
 
@@ -13,4 +13,4 @@ function About() {
     
 }
 
-export default About;
+export default Positioning;

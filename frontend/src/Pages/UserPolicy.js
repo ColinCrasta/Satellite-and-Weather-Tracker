@@ -1,11 +1,11 @@
 import React from "react";
 
 
-function Contact() {
+function UserPolicy() {
     return(
         <div>
             <h1>
-                Contact Me
+                User Policy
             </h1>
         </div>
 
@@ -13,4 +13,4 @@ function Contact() {
     
 }
 
-export default Contact;
+export default UserPolicy;

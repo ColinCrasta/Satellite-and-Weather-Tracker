@@ -1,11 +1,11 @@
 import React from "react";
 
 
-function Home() {
+function Analytics() {
     return(
         <div>
             <h1>
-                Welcome to my website
+                Analytics
             </h1>
         </div>
 
@@ -13,4 +13,4 @@ function Home() {
     
 }
 
-export default Home;
+export default Analytics;

@@ -7,6 +7,7 @@ CREATE TABLE "users" (
 	"accessRights" varchar NOT NULL,
 	"admin" BOOLEAN NOT NULL,
 	"approved" BOOLEAN NOT NULL,
+	"loggedIn" BOOLEAN NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("userID")
 ) WITH (
   OIDS=FALSE
@@ -31,7 +32,7 @@ CREATE TABLE "satRequest" (
 	"lastAltitude" integer,
 	"lastLocation" varchar,
 	"lastOrbitalSpeed" integer,
-	"lastOrbitalPeriod" integer,
+	"LastOrbitalPeriod" integer,
 	"lastPositionVector" varchar,
 	"dateRecorded" varchar NOT NULL,
 	CONSTRAINT "satRequest_pk" PRIMARY KEY ("satRequestID")
@@ -66,7 +67,6 @@ ALTER TABLE "satRequest" ADD CONSTRAINT "satRequest_fk0" FOREIGN KEY ("userID") 
 ALTER TABLE "satRequest" ADD CONSTRAINT "satRequest_fk1" FOREIGN KEY ("satID") REFERENCES "satellite"("satID");
 
 ALTER TABLE "locationRequest" ADD CONSTRAINT "locationRequest_fk0" FOREIGN KEY ("userID") REFERENCES "users"("userID");
-
 
 
 

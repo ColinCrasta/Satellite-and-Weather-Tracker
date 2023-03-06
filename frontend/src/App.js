@@ -1,21 +1,25 @@
+// Require and import statements
 import React from 'react';
 //import './App.css';
-import Home from './Pages/Home';
-import Contact from './Pages/Contact';
-import Projects from './Pages/Projects';
-import About from './Pages/About';
+import Weather from './Pages/Weather';
+import Positioning from './Pages/Positioning';
+import Analytics from './Pages/Analytics';
+import Login from './Pages/Login';
+import UserPolicy from './Pages/UserPolicy';
 import {Routes, Route} from 'react-router-dom';
-import Navbar from "./Pages/Components/Navbar"
+
+
 
 function App() {
   return (
-    <div className='App'>
-      <Navbar/>
+    <div id='appdiv'>
+      
       <Routes>
-      <Route exact path="/" element={<Home/>}> </Route>
-      <Route exact path="/about" element={<About/>} ></Route>
-      <Route exact path="/projects" element={<Projects/>} > </Route>
-      <Route exact path="/contact" element={<Contact/>} > </Route>
+      <Route exact path="/" element={<Login/>} ></Route>
+      <Route exact path="/weather" element={<Weather/>}> </Route>
+      <Route exact path="/analytics" element={<Analytics/>} > </Route>
+      <Route exact path="/positioning" element={<Positioning/>} > </Route>
+      <Route exact path="/userpolicy" element={<UserPolicy/>} > </Route>
       </Routes>
 
     </div>

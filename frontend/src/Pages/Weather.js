@@ -1,11 +1,11 @@
 import React from "react";
 
 
-function Projects() {
+function Weather() {
     return(
         <div>
             <h1>
-                My Projects
+                Weather
             </h1>
         </div>
 
@@ -13,4 +13,4 @@ function Projects() {
     
 }
 
-export default Projects;
+export default Weather;
