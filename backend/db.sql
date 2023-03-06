@@ -1,4 +1,6 @@
-CREATE TABLE "public.users" (
+CREATE DATABASE webapp;
+
+CREATE TABLE "users" (
 	"userID" serial NOT NULL,
 	"username" varchar NOT NULL UNIQUE,
 	"password" varchar NOT NULL,
@@ -12,7 +14,7 @@ CREATE TABLE "public.users" (
 
 
 
-CREATE TABLE "public.satellite" (
+CREATE TABLE "satellite" (
 	"satID" serial NOT NULL,
 	"name" varchar NOT NULL UNIQUE,
 	CONSTRAINT "satellite_pk" PRIMARY KEY ("satID")
@@ -22,14 +24,14 @@ CREATE TABLE "public.satellite" (
 
 
 
-CREATE TABLE "public.satRequest" (
+CREATE TABLE "satRequest" (
 	"satRequestID" serial NOT NULL,
 	"userID" integer NOT NULL,
 	"satID" integer NOT NULL,
 	"lastAltitude" integer,
 	"lastLocation" varchar,
 	"lastOrbitalSpeed" integer,
-	"LastOrbitalPeriod" integer,
+	"lastOrbitalPeriod" integer,
 	"lastPositionVector" varchar,
 	"dateRecorded" varchar NOT NULL,
 	CONSTRAINT "satRequest_pk" PRIMARY KEY ("satRequestID")
@@ -39,7 +41,7 @@ CREATE TABLE "public.satRequest" (
 
 
 
-CREATE TABLE "public.locationRequest" (
+CREATE TABLE "locationRequest" (
 	"locationRequestID" serial NOT NULL,
 	"userID" integer NOT NULL,
 	"location" varchar NOT NULL UNIQUE,

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Database</title>
+  </head>
+  <body>
+    <div>
+        <h4>Satellite</h4>
+        <p><%= JSON.stringify(satelliteRes.rows)%>!</p>
+
+        <h4>Users</h4>
+        <p><%= JSON.stringify(usersRes.rows)%>!</p>
+
+        <h4>SatRequest</h4>
+        <p><%= JSON.stringify(satRequestRes.rows)%>!</p>
+
+        <h4>LocationRequest</h4>
+        <p><%= JSON.stringify(locationRequestRes.rows)%>!</p>
+        
+
+        <form action="/database" method="POST">
+            <button type="submit" name="reset">Reset</button>
+        </form>
+        <br>
+        <form action="/databased" method="POST">
+            <button type="submit" name="">Delete All</button>
+        </form>
+        <br>
+    
+    </div>
+  </body>
+</html>
