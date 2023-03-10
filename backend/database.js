@@ -1,5 +1,5 @@
-//const path = require('path');
-//require('dotenv').config({ path: '../.env' }); //The .env file will be in the "Web-App folder"
+const path = require('path');
+require('dotenv').config({ path: '../.env' }); //The .env file will be in the "Web-App folder"
 
 //Import statement for the pg library
 const Pool = require("pg").Pool;
