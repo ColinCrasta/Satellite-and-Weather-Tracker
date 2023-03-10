@@ -11,11 +11,7 @@ function Login() {
 
     const [loggedIn, setLoggedIn] = useState(false);
 
-    const setLog = (bool) => {
-        setLoggedIn(bool);
-
-        
-    };
+    
 
     useEffect(() => {
         
@@ -26,7 +22,7 @@ function Login() {
         let display;
       if (!loggedIn) {
         display = <LoginForm loggedIn={loggedIn}
-        setLog={setLog} />
+        setLog={setLoggedIn} />
         
       } else {
         display = <Nav/>

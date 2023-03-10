@@ -55,7 +55,7 @@ let arr = [
   ],
   [
     [10, 35], 
-    [-20, 20],
+    [15, 20],
     [20, -10],
   ]
 ];
@@ -144,7 +144,9 @@ mapbox.addLayer({
   }, []);
   
   return (
-    <div id="map" style={{ width: '90%', height: '600px' }}></div>
+    <div id="map" style={{ width: '90%', height: '600px' }}>
+      
+    </div>
   );
 }
 

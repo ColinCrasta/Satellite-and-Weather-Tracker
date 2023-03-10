@@ -1,9 +1,4 @@
 import React, {useEffect} from 'react';
-import Mapbox from './Components/Mapbox';
-
-
-
-
 
 
 
@@ -15,11 +10,11 @@ function Weather() {
           
     
     return(
-        <div id='containerglobe'>
+        <div >
             <h1>
                 Weather
             </h1>
-            <Mapbox />
+            
             
             
             

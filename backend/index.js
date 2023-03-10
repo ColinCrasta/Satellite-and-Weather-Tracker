@@ -12,6 +12,7 @@ const bodyParser = require('body-parser')
 
 
 
+
 // Uses port number that is given in an
 // env file or port 5000 otherwise
 const PORT = process.env.PORTBACKEND || 5000;
@@ -30,7 +31,8 @@ app.use(outputURL);
 app.use(cors()); //Allows requests from various origins to be handled 
 app.use(express.json({ limit: '100mb' })) //creates a req.body that can be handled easily. The 10 mb limit is to not include large requests
 app.use(express.urlencoded({ extended: false })); //Allows us to parse data from forms
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
 
 
 
@@ -167,13 +169,11 @@ app.post('/databased', async (req, res) => {
 });
 
 
-//Validates login onformation
-app.post('/login', async (req, res) => {
 
-  console.log(req.body);
-  res.send({v: 'yes'});
-});
 
+
+//Routers
+app.use('/login', require('./Routes/Login'));
 
 
 
