@@ -15,7 +15,7 @@ function LoginForm(props) {
 //verification
   const fetchLogin = async(uname, pword) => {
     const loginInfo = {username: uname, password: pword};
-    fetch('http://localhost:5000/login', {
+    return fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -23,17 +23,25 @@ function LoginForm(props) {
         body: JSON.stringify(loginInfo)
       })
       .then(response => response.json())
-      .then(data => {console.log(data.v);})
+      .then(data => {return data.approved;})
       .catch(error => console.error(error));
+      
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     //console.log(e);
     //console.log("Username:", name);
     //console.log("Password:", pw);
-    fetchLogin(name, pw);
-    props.setLog(true);
+    const approved = await fetchLogin(name, pw);
+    // console.log('approved:', approved);
+
+    if (approved) {
+      props.setLog(true);
+    } else {
+      window.alert('Username or password is incorrect'); 
+    }
+    
     
   };
 

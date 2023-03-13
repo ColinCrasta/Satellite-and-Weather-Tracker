@@ -44,129 +44,129 @@ app.get('/', async (req, res) => {
 });
 
 
-// Displays the information in the database
-app.get('/database', async (req, res) => {
+// // Displays the information in the database
+// app.get('/database', async (req, res) => {
 
-  try {
+//   try {
     
-    const satelliteRes = await pool.query(
-      'SELECT * FROM satellite'
-    );
+//     const satelliteRes = await pool.query(
+//       'SELECT * FROM satellite'
+//     );
 
-    const usersRes = await pool.query(
-      'SELECT * FROM users'
-    );
+//     const usersRes = await pool.query(
+//       'SELECT * FROM users'
+//     );
 
-    const satRequestRes = await pool.query(
-      'SELECT * FROM "satRequest"'
-    );
+//     const satRequestRes = await pool.query(
+//       'SELECT * FROM "satRequest"'
+//     );
 
-    const locationRequestRes = await pool.query(
-      'SELECT * FROM "locationRequest"'
-    );
+//     const locationRequestRes = await pool.query(
+//       'SELECT * FROM "locationRequest"'
+//     );
 
-    //console.log('sqlResponse:' + JSON.stringify(sqlResponse.rows));
+//     //console.log('sqlResponse:' + JSON.stringify(sqlResponse.rows));
     
-    res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+//     res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// });
 
-// Resets and displays the information in the database
-app.post('/database', async (req, res) => {
+// // Resets and displays the information in the database
+// app.post('/database', async (req, res) => {
 
-  try {
+//   try {
 
-    //Deletes data from the database
-    const deleteQuery = `
-    DELETE FROM satellite;
-    DELETE FROM users;
-    DELETE FROM "satRequest";
-    DELETE FROM "locationRequest";
-    `;
-    const deleteData = await pool.query(
-      deleteQuery
-    );
+//     //Deletes data from the database
+//     const deleteQuery = `
+//     DELETE FROM satellite;
+//     DELETE FROM users;
+//     DELETE FROM "satRequest";
+//     DELETE FROM "locationRequest";
+//     `;
+//     const deleteData = await pool.query(
+//       deleteQuery
+//     );
 
-    //Resets data in the database
-    const resetQuery = `
-    INSERT INTO satellite ("satID", name) VALUES (5, 'telesat5');
+//     //Resets data in the database
+//     const resetQuery = `
+//     INSERT INTO satellite ("satID", name) VALUES (5, 'telesat5');
 
-    INSERT INTO users ("userID", username, password, "accessRights", admin, approved, "loggedIn") VALUES (13, 'colincrasta', 'colin1306', '1:2:3', true, true, false);
+//     INSERT INTO users ("userID", username, password, "accessRights", admin, approved, "loggedIn") VALUES (13, 'colincrasta', 'colin1306', '1:2:3', true, true, false);
 
-    INSERT INTO users ("userID", username, password, "accessRights", admin, approved, "loggedIn") VALUES (10, 'testing', 'testing', '1:2:3', false, false, false);
+//     INSERT INTO users ("userID", username, password, "accessRights", admin, approved, "loggedIn") VALUES (10, 'testing', 'testing', '1:2:3', false, false, false);
 
-    INSERT INTO "satRequest" ("satRequestID", "userID", "satID", "lastAltitude", "lastLocation", "lastOrbitalSpeed", "lastOrbitalPeriod", "lastPositionVector", "dateRecorded") VALUES (2, 13, 5, 25000, '0:0', 100, 65, '0:0:0', '12:45:13 am');
+//     INSERT INTO "satRequest" ("satRequestID", "userID", "satID", "lastAltitude", "lastLocation", "lastOrbitalSpeed", "lastOrbitalPeriod", "lastPositionVector", "dateRecorded") VALUES (2, 13, 5, 25000, '0:0', 100, 65, '0:0:0', '12:45:13 am');
 
-    INSERT INTO "locationRequest" ("locationRequestID", "userID", location, "lastTemp", "lastPrecipitationAmount", "lastHumidity", "lastPressure", "lastSNR", "lastBER", "lastScheme", "dateRecorded") VALUES (3, 13, '0:0', 40, 5, 13, 3000, 2, 3, 'n/a', '11:25:56 pm');
-
-    
-    `;
-    const resetData = await pool.query(
-      resetQuery
-    );
-
-
+//     INSERT INTO "locationRequest" ("locationRequestID", "userID", location, "lastTemp", "lastPrecipitationAmount", "lastHumidity", "lastPressure", "lastSNR", "lastBER", "lastScheme", "dateRecorded") VALUES (3, 13, '0:0', 40, 5, 13, 3000, 2, 3, 'n/a', '11:25:56 pm');
 
     
-    const satelliteRes = await pool.query(
-      'SELECT * FROM satellite'
-    );
-    const usersRes = await pool.query(
-      'SELECT * FROM users'
-    );
-    const satRequestRes = await pool.query(
-      'SELECT * FROM "satRequest"'
-    );
-    const locationRequestRes = await pool.query(
-      'SELECT * FROM "locationRequest"'
-    );
+//     `;
+//     const resetData = await pool.query(
+//       resetQuery
+//     );
+
+
 
     
-    res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-
-// Deletes the information in the database
-app.post('/databased', async (req, res) => {
-
-  try {
-
-    //Deletes data from the database
-    const deleteQuery = `
-    DELETE FROM "satRequest";
-    DELETE FROM "locationRequest";
-    DELETE FROM satellite;
-    DELETE FROM users;
-    `;
-    const deleteData = await pool.query(
-      deleteQuery
-    );
+//     const satelliteRes = await pool.query(
+//       'SELECT * FROM satellite'
+//     );
+//     const usersRes = await pool.query(
+//       'SELECT * FROM users'
+//     );
+//     const satRequestRes = await pool.query(
+//       'SELECT * FROM "satRequest"'
+//     );
+//     const locationRequestRes = await pool.query(
+//       'SELECT * FROM "locationRequest"'
+//     );
 
     
-    const satelliteRes = await pool.query(
-      'SELECT * FROM satellite'
-    );
-    const usersRes = await pool.query(
-      'SELECT * FROM users'
-    );
-    const satRequestRes = await pool.query(
-      'SELECT * FROM "satRequest"'
-    );
-    const locationRequestRes = await pool.query(
-      'SELECT * FROM "locationRequest"'
-    );
+//     res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// });
+
+
+// // Deletes the information in the database
+// app.post('/databased', async (req, res) => {
+
+//   try {
+
+//     //Deletes data from the database
+//     const deleteQuery = `
+//     DELETE FROM "satRequest";
+//     DELETE FROM "locationRequest";
+//     DELETE FROM satellite;
+//     DELETE FROM users;
+//     `;
+//     const deleteData = await pool.query(
+//       deleteQuery
+//     );
 
     
-    res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+//     const satelliteRes = await pool.query(
+//       'SELECT * FROM satellite'
+//     );
+//     const usersRes = await pool.query(
+//       'SELECT * FROM users'
+//     );
+//     const satRequestRes = await pool.query(
+//       'SELECT * FROM "satRequest"'
+//     );
+//     const locationRequestRes = await pool.query(
+//       'SELECT * FROM "locationRequest"'
+//     );
+
+    
+//     res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// });
 
 
 
@@ -174,6 +174,8 @@ app.post('/databased', async (req, res) => {
 
 //Routers
 app.use('/login', require('./Routes/Login'));
+app.use('/database', require('./Routes/DB.js'));
+app.use('/database/d', require('./Routes/DB.js'));
 
 
 

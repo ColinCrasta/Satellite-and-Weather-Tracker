@@ -56,7 +56,7 @@ let arr = [
   [
     [10, 35], 
     [15, 20],
-    [20, -10],
+    [-75, 45]//ottawa
   ]
 ];
 
@@ -111,12 +111,11 @@ mapbox.addLayer({
   type: 'line',
   source: 'coordinates',
   paint: {
-    'line-color': 'blue',
-    'line-width': 0.3
+    'line-color': 'yellow',
+    'line-width': 1
   }, 
   filter: ['==', '$type', 'LineString'],
-  layout: {
-    'line-join': 'round',
+  layout: {'line-join': 'round',
     'line-cap': 'round'
   }
 });
@@ -125,7 +124,7 @@ mapbox.addLayer({
 mapbox.addLayer({
   id: 'coordinates',
   type: 'circle',
-  source: 'coordinates',
+    source: 'coordinates',
   paint: {
     'circle-radius': 5,
     'circle-color': 'yellow'
@@ -144,7 +143,8 @@ mapbox.addLayer({
   }, []);
   
   return (
-    <div id="map" style={{ width: '90%', height: '600px' }}>
+    <div id="map" style={
+      { width: '100%', height: '600px' }}>
       
     </div>
   );

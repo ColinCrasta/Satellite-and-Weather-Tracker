@@ -86,10 +86,10 @@ function Weather() {
           <th>Temperature (Celsius)</th>
           <th>Humidity (%)</th>
           <th>Pressure (mbar)</th>
-          <th>SNR</th>
+          <th>SNR (dB)</th>
           <th>BER</th>
           <th>Modulation Scheme</th>
-          <th>Bandwidth</th>
+          <th>Bandwidth (Hz)</th>
           <th>Channel Capacity</th>
 
         </tr>

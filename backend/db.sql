@@ -1,10 +1,10 @@
 CREATE DATABASE webapp;
 
+
 CREATE TABLE "users" (
 	"userID" serial NOT NULL,
 	"username" varchar NOT NULL UNIQUE,
 	"password" varchar NOT NULL,
-	"accessRights" varchar NOT NULL,
 	"admin" BOOLEAN NOT NULL,
 	"approved" BOOLEAN NOT NULL,
 	"loggedIn" BOOLEAN NOT NULL,
@@ -31,9 +31,10 @@ CREATE TABLE "satRequest" (
 	"satID" integer NOT NULL,
 	"lastAltitude" integer,
 	"lastLocation" varchar,
-	"lastOrbitalSpeed" integer,
-	"lastOrbitalPeriod" integer,
+	"lastOrbitalSpeed" varchar,
+	"lastOrbitalPeriod" varchar,
 	"lastPositionVector" varchar,
+	"groundStationDist" integer,
 	"dateRecorded" varchar NOT NULL,
 	CONSTRAINT "satRequest_pk" PRIMARY KEY ("satRequestID")
 ) WITH (
@@ -47,12 +48,13 @@ CREATE TABLE "locationRequest" (
 	"userID" integer NOT NULL,
 	"location" varchar NOT NULL UNIQUE,
 	"lastTemp" integer,
-	"lastPrecipitationAmount" integer,
 	"lastHumidity" integer,
 	"lastPressure" integer,
 	"lastSNR" integer,
 	"lastBER" integer,
 	"lastScheme" varchar,
+	"lastBandwidth" integer,
+	"lastCapacity" integer,
 	"dateRecorded" varchar NOT NULL,
 	CONSTRAINT "locationRequest_pk" PRIMARY KEY ("locationRequestID")
 ) WITH (
