@@ -8,6 +8,7 @@ const app = express();
 const outputURL = require('./Helper-Functions/OutputURL');
 const pool = require('./database'); //Connects to the database
 const bodyParser = require('body-parser')
+const fs = require('fs');
 
 
 
@@ -167,6 +168,22 @@ app.get('/', async (req, res) => {
 //     console.log(error.message);
 //   }
 // });
+
+
+
+app.get('/file', async (req, res) => {
+
+  try {
+
+    fs.readFile('data.txt', 'utf-8', (err, data) => {
+      if (err) throw err;
+    
+      res.send( {file: data});
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 
 

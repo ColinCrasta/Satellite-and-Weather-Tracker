@@ -48,13 +48,19 @@ function MapStatic(props) {
 //the coordinates will be in an array that contains 2d arrays with the coordiantes in longitude and latitude form
 let arr = [
   [
-    [-73.985664, 40.748817]
+    [27,-62]
   ],
   [
-    [-80.005941, 10]
+    [38, -78]
   ],
   [
-    [10, 35]
+    [-13, 39]
+  ],
+  [
+    [33, 1]
+  ],
+  [
+    [-54, -17]
   ]
 ];
 

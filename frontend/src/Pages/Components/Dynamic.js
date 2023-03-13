@@ -7,7 +7,7 @@ import moment from 'moment';
 function Dynamic(props) {
 
   const present = moment().format('YYYY/MM/DD/HH/mm/ss');
-  const future = moment().add(1, 'hour').add(30, 'minutes').format('YYYY/MM/DD/HH/mm/ss');
+  const future = moment().add(50, 'minutes').format('YYYY/MM/DD/HH/mm/ss');
 
     
 

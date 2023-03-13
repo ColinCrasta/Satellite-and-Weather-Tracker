@@ -1,0 +1,14 @@
+.my-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .my-table td,
+  .my-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .my-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }

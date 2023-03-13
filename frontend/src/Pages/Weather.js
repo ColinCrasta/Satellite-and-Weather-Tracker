@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import './Positioning.css';
 
 
 
@@ -79,33 +80,31 @@ function Weather() {
             <br />
 
 
-            <table>
+            <table className='my-table'>
       <thead>
         <tr>
-          <th>Location (Long, Lat)</th>
+          <th>Location (Lat, Long)</th>
           <th>Temperature (Celsius)</th>
           <th>Humidity (%)</th>
           <th>Pressure (mbar)</th>
           <th>SNR (dB)</th>
           <th>BER</th>
           <th>Modulation Scheme</th>
-          <th>Bandwidth (Hz)</th>
-          <th>Channel Capacity</th>
+          <th>Channel Capacity (bps)</th>
 
         </tr>
       </thead>
       <tbody>
         
       <tr key='1'>
-            <td>45.4215, 75.6972</td>
-            <td>5</td>
-            <td>10</td>
-            <td>1016.87</td>
-            <td>5</td>
-            <td>5</td>
+            <td>45.4215, -75.6972</td>
+            <td>0.47230979800224304</td>
+            <td>89.20198822021484</td>
+            <td>1015.755126953125</td>
+            <td>09.15025329589844</td>
+            <td>0.0</td>
             <td>n/a</td>
-            <td>5</td>
-            <td>5</td>
+            <td>61392444.0</td>
             
             
           </tr>
