@@ -1,17 +1,20 @@
 import React, {useState, useEffect} from "react";
+import moment from 'moment';
 
 
 
-function DynamicMap(props) {
 
+function Dynamic(props) {
 
+  const present = moment().format('YYYY/MM/DD/HH/mm/ss');
+  const future = moment().add(1, 'hour').add(30, 'minutes').format('YYYY/MM/DD/HH/mm/ss');
 
     
 
     //Stores the login information usign states
   
-  const [start, setStart] = useState("2023/3/10/13/30/48");
-  const [end, setEnd] = useState("2023/3/10/14/30/48");
+  const [start, setStart] = useState(present);
+  const [end, setEnd] = useState(future);
   const [send,setSend] = useState(true);
   const [initialRender, setInitialRender] = useState(false);
 
@@ -86,6 +89,7 @@ function DynamicMap(props) {
 
         <button type="submit">Submit</button>
       </form>
+
     </div>
 
 
@@ -93,4 +97,4 @@ function DynamicMap(props) {
 }
 
 
-export default DynamicMap;
+export default Dynamic;

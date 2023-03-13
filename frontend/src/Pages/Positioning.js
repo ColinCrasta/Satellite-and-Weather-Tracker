@@ -1,13 +1,18 @@
 import React, {useState, useEffect} from "react";
-import Mapbox from './Components/Mapbox';
-import DynamicMap from './Components/DynamicMap';
-import StaticMap from './Components/StaticMap';
+import MapDynamic from './Components/MapDynamic';
+import Dynamic from './Components/Dynamic';
+import Static from './Components/Static';
+import MapStatic from './Components/MapStatic';
+
 
 
 function Positioning() {
 
     const [dynamic, setDynamic] = useState(false);
-    const [display, setDisplay] = useState(<StaticMap />);
+    const [display, setDisplay] = useState(<><Static />
+    </>);
+    const [map, setMap] = useState(<><MapStatic />
+    </>);
     const [button, setButton] = useState('Dynamic');
     
 
@@ -19,10 +24,12 @@ function Positioning() {
         
 
         if (dynamic) {
-            setDisplay(<DynamicMap />);
+            setDisplay(<><Dynamic /></>);
+            setMap(<MapDynamic />);
             setButton('Static');
         } else  {
-            setDisplay(<StaticMap />);
+            setDisplay(<><Static /></>);
+            setMap(<MapStatic />);
             setButton('Dynamic');
         }
         
@@ -60,10 +67,9 @@ function Positioning() {
             <br />
             <br />
             <br />
+            {map}
 
 
-
-            <Mapbox />
         </div>
 
     );

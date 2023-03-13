@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-function Map() {
+function MapDynamic(props) {
 
 
   //The useEffect is used as it renders everything when the page is first made visible
@@ -42,6 +42,8 @@ function Map() {
       });
   
 
+//marker for the ground station
+      const ottawaMarker = new mapboxgl.Marker().setLngLat([-75, 45]).addTo(mapbox);
 
 //the coordinates will be in an array that contains 2d arrays with the coordiantes in longitude and latitude form
 let arr = [
@@ -56,9 +58,12 @@ let arr = [
   [
     [10, 35], 
     [15, 20],
-    [-75, 45]//ottawa
+    [20, 15],
+    [-75, 45]
   ]
 ];
+
+
 
 
 
@@ -78,7 +83,9 @@ function addLines(pointsData) {
         
         //Iterates through each coordinate and adds them 
         // to the globe while also creating a line that 
-        // connects them
+        // connects them but checks if the lsit is greater than 1
+        
+        
         coordData.features.push(
           ...pointsData.map((coord) => ({
             type: 'Feature',
@@ -88,6 +95,7 @@ function addLines(pointsData) {
             }
           }))
         );
+      
 
         //adds the coordiantes plus the lines to the globe
         mapbox.getSource('coordinates').setData(coordData);
@@ -101,7 +109,12 @@ function addLines(pointsData) {
   }
 }
 
+
+
+
+
 addLines(arr);
+
 
 
 
@@ -119,6 +132,8 @@ mapbox.addLayer({
     'line-cap': 'round'
   }
 });
+
+
 
 
 mapbox.addLayer({
@@ -150,4 +165,4 @@ mapbox.addLayer({
   );
 }
 
-export default Map;
+export default MapDynamic;
