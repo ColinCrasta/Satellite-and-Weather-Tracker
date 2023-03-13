@@ -37,7 +37,8 @@ function LoginForm(props) {
     // console.log('approved:', approved);
 
     if (approved) {
-      props.setLog(true);
+      props.setName(name);
+      props.setLoggedIn(true);
     } else {
       window.alert('Username or password is incorrect'); 
     }

@@ -1,7 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Login from "../Login";
 
-function Navigationbar(){
+function Navigationbar(props){
+
+
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        props.setLoggedIn(false);
+    
+      };
+
+
     return (
         <>
         <ul>
@@ -11,8 +22,8 @@ function Navigationbar(){
             <li><Link to="/analytics">Analytics</Link></li>
             <li><Link to="/userpolicy">UserPolicy</Link></li>
         </ul>
-        <button >
-        Logout {}
+        <button onClick={handleLogout}>
+        Logout {props.name}
       </button>
       </>
     )

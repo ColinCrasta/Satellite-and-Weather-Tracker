@@ -12,6 +12,7 @@ function Login() {
 
     const [loggedIn, setLoggedIn] = useState(false);
     const [register, setRegister] = useState(false);
+    const [name, setName] = useState('');
 
 
     
@@ -31,14 +32,15 @@ function Login() {
 
       if (!loggedIn) {
         display = <LoginForm loggedIn={loggedIn}
-        setLog={setLoggedIn}
-        setRegister={setRegister}/>
+        setLoggedIn={setLoggedIn}
+        setRegister={setRegister}
+        setName={setName}/>
         
       } else {
-        display = <Nav/>
+        display = <Nav name={name} setLoggedIn={setLoggedIn}/>
       }
 
-      console.log(register);
+    
 
       if (register) {
         display = <Register setRegister={setRegister}/>

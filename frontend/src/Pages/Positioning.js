@@ -9,6 +9,7 @@ function Positioning() {
     const [dynamic, setDynamic] = useState(false);
     const [display, setDisplay] = useState(<StaticMap />);
     const [button, setButton] = useState('Dynamic');
+    
 
     
 
