@@ -59,6 +59,13 @@ function LoginForm(props) {
   };
 
 
+  const handleRegister = (e) => {
+    e.preventDefault();
+    props.setRegister(true);
+
+  };
+
+
 
 
   return (
@@ -89,8 +96,9 @@ function LoginForm(props) {
           <br />
 
         </div>
-
-        <button type="submit">Submit</button>
+        <button onClick={handleRegister}>Register</button>
+        <br />
+        <button type="submit">Login</button>
       </form>
     </div>
   );

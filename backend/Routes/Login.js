@@ -22,19 +22,45 @@ const result = [outputUser.rows[0]['exists'], outputPW.rows[0]['exists']];
 
  
 
-  let approved;
+  let approved = false;
+  let incorrect; //returns whether username, password, or both are incorrect
 
   if (result[0] && result[1]) {
     approved = true;
-  } else {
-    approved = false
+    incorrect = 'none';
+  } else if(result[0] && !result[1]) {
+    incorrect = 'password';
+  } else if(!result[0] && result[1]) {
+    incorrect = 'username';
+  } else if(!result[0] && !result[1]) {
+    incorrect = 'both';
   }
 
  
 
     console.log(req.body);
-    res.send({approved: approved});
+    res.send({approved: approved, incorrect: incorrect});
   });
+
+
+router.post('/register', async (req, res) => {
+
+  const username = [req.body.username];
+  const hash = hasher.SHA256(req.body.password).toString();
+
+
+  const query = `INSERT INTO users (username, password, admin, approved, "loggedIn") VALUES ('${username}', '${hash}', false, false, false);`
+
+  
+
+  const data = await pool.query(query);
+
+  res.send({inserted: true});
+
+
+
+
+});
 
 
 

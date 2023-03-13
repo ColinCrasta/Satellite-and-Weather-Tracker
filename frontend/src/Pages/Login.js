@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "./Components/LoginForm";
 import Nav from "./Components/Navigationbar";
+import Register from "./Components/Register";
 
 
 
@@ -10,6 +11,8 @@ import Nav from "./Components/Navigationbar";
 function Login() {
 
     const [loggedIn, setLoggedIn] = useState(false);
+    const [register, setRegister] = useState(false);
+
 
     
 
@@ -18,14 +21,28 @@ function Login() {
         //console.log(loggedIn);
       }, [loggedIn]); 
 
+      useEffect(() => {
+        
+      }, [register]); 
 
-        let display;
+
+
+      let display;
+
       if (!loggedIn) {
         display = <LoginForm loggedIn={loggedIn}
-        setLog={setLoggedIn} />
+        setLog={setLoggedIn}
+        setRegister={setRegister}/>
         
       } else {
         display = <Nav/>
+      }
+
+      console.log(register);
+
+      if (register) {
+        display = <Register setRegister={setRegister}/>
+        
       }
 
 
