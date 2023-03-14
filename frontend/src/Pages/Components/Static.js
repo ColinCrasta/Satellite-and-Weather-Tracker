@@ -9,7 +9,7 @@ function Static(props) {
 
 
   const present = moment().format('YYYY/MM/DD/HH/mm/ss');
-  console.log(present);
+  // console.log(present);
 
 
     //Stores the login information usign states
@@ -44,7 +44,7 @@ function Static(props) {
   //Send the login information to the server for 
 //verification
   const fetchLogin = async(currTime) => {
-    console.log(currTime);
+    // console.log(currTime);
   }
 
   const handleSubmit = (e) => {

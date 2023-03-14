@@ -159,7 +159,7 @@ function Positioning() {
           <th>Orbital Velocity in vector format(km/s)</th>
           <th>Orbital Period</th>
           <th>Position Vector (xyz in km)</th>
-          <th>Distance to Ground Station (km)</th>
+          <th>Distance from Ground Station (km)</th>
 
         </tr>
       </thead>

@@ -189,6 +189,23 @@ app.get('/data', async (req, res) => {
 
 
 
+app.get('/weather', async (req, res) => {
+
+  
+  try {
+
+    fs.readFile('./Data/weather_data.json', 'utf-8', (err, data) => {
+      if (err) throw err;
+    // console.log(data);
+    
+      res.send( {file: data});
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+
 
 
 //Routers

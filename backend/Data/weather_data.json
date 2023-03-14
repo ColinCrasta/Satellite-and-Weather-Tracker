@@ -1,1 +1,8 @@
-{"capacity": 61392444.0, "ber": 0.0, "snr": 209.15025329589844, "humidity": 89.20198822021484, "pressure": 1015.755126953125, "temperature": 0.47230979800224304}
+[{"capacity": 61391228.0, "ber": 0.0, "snr": 209.1319580078125, "humidity": 92.0, "pressure": 1013.0, "temperature": 1.6699999570846558},
+{"capacity": 61391228.0, "ber": 0.0, "snr": 209.1319580078125, "humidity": 92.0, "pressure": 1013.0, "temperature": 1.6699999570846558},
+{"capacity": 61391228.0, "ber": 0.0, "snr": 209.1319580078125, "humidity": 92.0, "pressure": 1013.0, "temperature": 1.6699999570846558},
+{"capacity": 61391228.0, "ber": 0.0, "snr": 209.13198852539062, "humidity": 92.0, "pressure": 1013.0, "temperature": 1.6799999475479126},
+{"capacity": 61391228.0, "ber": 0.0, "snr": 209.13198852539062, "humidity": 92.0, "pressure": 1013.0, "temperature": 1.6799999475479126},
+{"capacity": 61391844.0, "ber": 0.0, "snr": 209.1410369873047, "humidity": 91.0, "pressure": 1013.0, "temperature": 1.75},
+{"capacity": 61392688.0, "ber": 0.0, "snr": 209.15345764160156, "humidity": 89.0, "pressure": 1017.0, "temperature": 1.0},
+{"capacity": 61392688.0, "ber": 0.0, "snr": 209.15345764160156, "humidity": 89.0, "pressure": 1017.0, "temperature": 1.0}]
