@@ -50,7 +50,10 @@ function Positioning() {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(response => response.text()).then(res =>{return res}).catch(error => console.error(error));
+    }).then(response => response.json()).then(res =>{
+      // console.log(res.file);
+      return res.file
+    }).catch(error => console.error(error));
     // const result = await response.text();
     // return result;
 
@@ -59,10 +62,14 @@ return response;
 
 const getFile = async () => {
 
+  try {
     const data = await text();
-    
-
+    // console.log(data); 
     return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
     
     
   };
@@ -104,7 +111,7 @@ const getFile = async () => {
           <th>Satellite</th>
           <th>Altitude (m)</th>
           <th>Location (lat:long)</th>
-          <th>Orbital Speed (k vm/s)</th>
+          <th>Orbital Velocity (km/s)</th>
           <th>Orbital Period</th>
           <th>Position Vector (xyz in km)</th>
           <th>Distance to Ground Station (km)</th>
@@ -115,7 +122,7 @@ const getFile = async () => {
         
         <tr key='1'>
             <td>LEO VANTAGE 1</td>
-            <td>3112.29139133</td>
+            <td>9000</td>
             <td>27:-62</td>
             <td>6.500708029520797</td>
             <td></td>

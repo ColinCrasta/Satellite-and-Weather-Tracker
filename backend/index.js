@@ -175,8 +175,9 @@ app.get('/file', async (req, res) => {
 
   try {
 
-    fs.readFile('data.txt', 'utf-8', (err, data) => {
+    fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {
       if (err) throw err;
+    // console.log(data);
     
       res.send( {file: data});
     });

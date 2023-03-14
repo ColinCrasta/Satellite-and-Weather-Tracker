@@ -3,7 +3,7 @@ import socket
 import sys
 
 
-HOST = '192.168.117.188' #"172.17.64.1"  # The server's hostname or IP address
+HOST = '172.17.176.106' #"172.17.64.1"  # The server's hostname or IP address
 PORT = 65432  # The port used by the server
 
 input = sys.argv[1]
