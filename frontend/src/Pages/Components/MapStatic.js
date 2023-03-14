@@ -1,12 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import {getParsedData} from '../Functions/Fetch';
+
 
 function MapStatic(props) {
 
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    async function getData() {
+      const parsedData = await getParsedData();
+      setData(parsedData);
+    }
+    getData();  
+  }, []);
 
   //The useEffect is used as it renders everything when the page is first made visible
   useEffect(() => {
+
+    
 
     //Contains the acces token for Mapbox GL JS
     mapboxgl.accessToken = 'pk.eyJ1IjoiY29saW5jcmFzdGEiLCJhIjoiY2xleDgyZ3E4MWwzczNxcW81b2FsMjc0NyJ9.BFWKjxlo5ZFRBrtgYvTGpA';
@@ -64,6 +77,27 @@ let arr = [
   ]
 ];
 
+console.log(arr);
+
+
+
+let arr2 = (Object.keys(data).map((key) => {
+  let values = [];
+
+  if (data[key]['iteration '] === 0) {
+    values.push([Number(data[key]['lon'].split('deg')[0]) , Number(data[key]['lat'].split('deg')[0]) ])
+    return values;
+    
+  } 
+
+  return null;
+
+  
+
+})).filter((elem) => elem !== null);
+
+
+
 
 
 
@@ -113,8 +147,8 @@ function addLines(pointsData) {
 
 
 
-
-addLines(arr);
+// console.log(arr2);
+addLines(arr2);
 
 
 
@@ -145,7 +179,7 @@ mapbox.addLayer({
     return () => {
       mapbox.remove();  //removes the mapbox pbjet evrery time the page reloads
     };
-  }, []);
+  }, [data]);
   
   return (
     <div id="map" style={

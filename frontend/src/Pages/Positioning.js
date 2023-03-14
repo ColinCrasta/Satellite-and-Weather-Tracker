@@ -4,7 +4,7 @@ import Dynamic from './Components/Dynamic';
 import Static from './Components/Static';
 import MapStatic from './Components/MapStatic';
 import './Positioning.css';
-import {getPosFile, getParsedData} from './Functions/Fetch';
+import {getParsedData} from './Functions/Fetch';
 
 
 
@@ -24,16 +24,11 @@ function Positioning() {
         const parsedData = await getParsedData();
         setData(parsedData);
       }
-      getData();
-
-      
-      
-
-          
+      getData();  
     }, []);
   
     useEffect(() => {
-      console.log(data);
+      // console.log(data);
 
       if (!dynamic) {
         let count = 0;

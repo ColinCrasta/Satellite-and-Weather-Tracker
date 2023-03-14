@@ -1,8 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import {getParsedData} from '../Functions/Fetch';
+
+
 
 function MapDynamic(props) {
+
+  const [data, setData] = useState({});
+
+
+
+  useEffect(() => {
+    async function getData() {
+      const parsedData = await getParsedData();
+      setData(parsedData);
+    }
+    getData();  
+  }, []);
+
 
 
   //The useEffect is used as it renders everything when the page is first made visible
@@ -11,23 +27,6 @@ function MapDynamic(props) {
     //Contains the acces token for Mapbox GL JS
     mapboxgl.accessToken = 'pk.eyJ1IjoiY29saW5jcmFzdGEiLCJhIjoiY2xleDgyZ3E4MWwzczNxcW81b2FsMjc0NyJ9.BFWKjxlo5ZFRBrtgYvTGpA';
 
-
-    const getFile = async() =>{
-
-      const response = await fetch('http://localhost:5000/data', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(response => response.json()).then(res =>{
-    // console.log(res.file);
-    return res.file
-  }).catch(error => console.error(error));
-  // const result = await response.text();
-  // return result;
-
-return response;
-} 
 
     
   //Initializes the mapbox  and sets its it to a globe
@@ -97,6 +96,45 @@ let arr = [
 
 
 
+let names = (Object.keys(data).map((key) => {
+  
+  
+  if (data[key]['iteration '] === 0) {
+    return key.split('iteration')[0]
+    
+    
+  } 
+
+  return null;
+
+})).filter((elem) => elem !== null);
+
+// console.log(names);
+
+
+let arr2 = names.map((name) => {
+  let values = [];
+  
+  (Object.keys(data).map((key) => {
+      
+    
+      if (key.split('iteration')[0] === name) {
+        values.push([Number(data[key]['lon'].split('deg')[0]) , Number(data[key]['lat'].split('deg')[0]) ])
+
+        
+        
+      } 
+    
+      return null;
+    
+      
+    
+    }))
+    
+    return values;
+
+})
+
 
 
 //Adds coordiantes and the lines between them to the map dynamically
@@ -144,8 +182,8 @@ function addLines(pointsData) {
 
 
 
-
-addLines(arr);
+// console.log(arr2);
+addLines(arr2);
 
 
 
@@ -187,7 +225,7 @@ mapbox.addLayer({
     return () => {
       mapbox.remove();  //removes the mapbox pbjet evrery time the page reloads
     };
-  }, []);
+  }, [data]);
   
   return (
     <div id="map" style={
