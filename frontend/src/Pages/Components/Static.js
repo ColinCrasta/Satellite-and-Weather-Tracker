@@ -68,14 +68,14 @@ function Static(props) {
 
 <div>
         <div>
-      <h3> Current Satellite  Location </h3>
+      <h3> Satellite Position</h3>
       </div>
       <br />
       <br />
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label> Enter Time in year/month/day/hour/minute/second</label>
+          <label> Enter Time in year/month/day/hour/minute/second format: </label>
           <input type="text" name='current' defaultValue={curr} />
           <br />
           <br />

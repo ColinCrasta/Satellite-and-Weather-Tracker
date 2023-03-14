@@ -4,6 +4,7 @@ import Dynamic from './Components/Dynamic';
 import Static from './Components/Static';
 import MapStatic from './Components/MapStatic';
 import './Positioning.css';
+import {getPosFile, getParsedData} from './Functions/Fetch';
 
 
 
@@ -15,7 +16,92 @@ function Positioning() {
     const [map, setMap] = useState(<><MapStatic />
     </>);
     const [button, setButton] = useState('Dynamic');
+    const [data, setData] = useState({});
+    const [table, setTable] = useState(<></>);
+
+    useEffect(() => {
+      async function getData() {
+        const parsedData = await getParsedData();
+        setData(parsedData);
+      }
+      getData();
+
+      
+      
+
+          
+    }, []);
+  
+    useEffect(() => {
+      console.log(data);
+
+      if (!dynamic) {
+        let count = 0;
+      let addTable;
+      try {
+        addTable = Object.keys(data).map((key) => {
+          
+
+          if (data[key]['iteration '] === 0){
+
+            count++
+
+            return(
+              <tr key={count}>
+          <td>{key.split('iteration')[0]}</td>
+          <td>9000</td>
+          <td>{data[key]['lat'].split('deg')[0]}:{data[key]['lon'].split('deg')[0]}</td>
+          <td>{data[key]['velocity ']}</td>
+          <td></td>
+          <td>{data[key]['geocentric position(km)  ']}</td>
+          <td>{data[key]['distance']}</td>
+
+        </tr>
+            )
+          }
+      })
+      } catch (error) {
+        console.error(error);
+      }
+      
+
+      setTable(addTable);
+      } else {
+        let count = 0;
+      let addTable;
+      try {
+        addTable = Object.keys(data).map((key) => {
+          
+
+
+            count++
+
+            return(
+              <tr key={count}>
+          <td>{key}</td>
+          <td>9000</td>
+          <td>{data[key]['lat'].split('deg')[0]}:{data[key]['lon'].split('deg')[0]}</td>
+          <td>{data[key]['velocity ']}</td>
+          <td></td>
+          <td>{data[key]['geocentric position(km)  ']}</td>
+          <td>{data[key]['distance']}</td>
+
+        </tr>
+            )
+          
+      })
+      } catch (error) {
+        console.error(error);
+      }
+      
+
+      setTable(addTable);
+      }
+      
+      
     
+    }, [data, dynamic]);
+
 
     
 
@@ -27,11 +113,11 @@ function Positioning() {
         if (dynamic) {
             setDisplay(<><Dynamic /></>);
             setMap(<MapDynamic />);
-            setButton('Static');
+            setButton('Single Location');
         } else  {
             setDisplay(<><Static /></>);
             setMap(<MapStatic />);
-            setButton('Dynamic');
+            setButton('Path');
         }
         
         
@@ -41,42 +127,6 @@ function Positioning() {
       function handleChange(){
         setDynamic(!dynamic);
       }
-
-
-      const text = async() =>{
-
-        const response = await fetch('http://localhost:5000/file', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => response.json()).then(res =>{
-      // console.log(res.file);
-      return res.file
-    }).catch(error => console.error(error));
-    // const result = await response.text();
-    // return result;
-
-return response;
-} 
-
-const getFile = async () => {
-
-  try {
-    const data = await text();
-    // console.log(data); 
-    return data;
-  } catch (error) {
-    console.error(error);
-    return error;
-  }
-    
-    
-  };
-
-
-  getFile();
-
 
     return(
         <div>
@@ -111,7 +161,7 @@ const getFile = async () => {
           <th>Satellite</th>
           <th>Altitude (m)</th>
           <th>Location (lat:long)</th>
-          <th>Orbital Velocity (km/s)</th>
+          <th>Orbital Velocity in vector format(km/s)</th>
           <th>Orbital Period</th>
           <th>Position Vector (xyz in km)</th>
           <th>Distance to Ground Station (km)</th>
@@ -119,54 +169,11 @@ const getFile = async () => {
         </tr>
       </thead>
       <tbody>
-        
-        <tr key='1'>
-            <td>LEO VANTAGE 1</td>
-            <td>9000</td>
-            <td>27:-62</td>
-            <td>6.500708029520797</td>
-            <td></td>
-            <td>-5533.71185589, 2465.19466632, 3112.29139133</td>
-            <td></td>
-        </tr>
-        <tr key='2'>
-            <td>YUNHAI 1</td>
-            <td>4447.24344862</td>
-            <td>38:-78</td>
-            <td>7.45146457943</td>
-            <td></td>
-            <td>-4319.759912, 3593.17600209, 4447.24344862</td>
-            <td></td>
-        </tr>
 
-        <tr key='3'>
-            <td>YUNHAI 2-01</td>
-            <td>1670.32732863</td>
-            <td>-13:39</td>
-            <td>7.945056035624952</td>
-            <td></td>
-            <td>-1472.46902421 -6828.65751628 -1670.32732863</td>
-            <td></td>
-        </tr>
+      {
+        table
+      }
 
-        <tr key='4'>
-            <td>STARLINK-1575</td>
-            <td>3813.51201245</td>
-            <td>33:01</td>
-            <td>7.91</td>
-            <td></td>
-            <td>-4437.45588642 -3678.58531902  3813.51201245</td>
-            <td></td>
-        </tr>
-        <tr key='5'>
-            <td>NAVSTAR 80 (USA 309)</td>
-            <td>2714.48368249</td>
-            <td>-54:-17</td>
-            <td>7.53</td>
-            <td></td>
-            <td>-14295.65082838  -5533.03168529 -2714.48368249</td>
-            <td></td>
-        </tr>
       </tbody>
     </table>
 

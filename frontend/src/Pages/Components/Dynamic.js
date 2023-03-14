@@ -64,14 +64,14 @@ function Dynamic(props) {
 
 <div>
         <div>
-      <h3> Dynamic Satellite  Location </h3>
+      <h3> Path of the Satellites </h3>
       </div>
       <br />
       <br />
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label> Enter Start Time in year/month/day/hour/minute/second</label>
+          <label> Enter Start Time in year/month/day/hour/minute/second format: </label>
           <input type="text" name='start' defaultValue={start} />
           <br />
           <br />
@@ -79,7 +79,7 @@ function Dynamic(props) {
 
         <div>
             
-          <label> Enter End Time in year/month/day/hour/minute/second</label>
+          <label> Enter End Time in year/month/day/hour/minute/second format: </label>
           <input type="text" name='end' defaultValue={end} />
 
           <br />

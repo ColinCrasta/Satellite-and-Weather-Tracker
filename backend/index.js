@@ -171,8 +171,9 @@ app.get('/', async (req, res) => {
 
 
 
-app.get('/file', async (req, res) => {
+app.get('/data', async (req, res) => {
 
+  
   try {
 
     fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {

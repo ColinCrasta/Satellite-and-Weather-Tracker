@@ -12,6 +12,22 @@ function MapDynamic(props) {
     mapboxgl.accessToken = 'pk.eyJ1IjoiY29saW5jcmFzdGEiLCJhIjoiY2xleDgyZ3E4MWwzczNxcW81b2FsMjc0NyJ9.BFWKjxlo5ZFRBrtgYvTGpA';
 
 
+    const getFile = async() =>{
+
+      const response = await fetch('http://localhost:5000/data', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json()).then(res =>{
+    // console.log(res.file);
+    return res.file
+  }).catch(error => console.error(error));
+  // const result = await response.text();
+  // return result;
+
+return response;
+} 
 
     
   //Initializes the mapbox  and sets its it to a globe
