@@ -35,7 +35,7 @@ function Weather() {
 
   
   const present = moment().format('YYYY/MM/DD/HH/mm/ss');
-  const t1 = moment().add(10, 'minutes').format('HH/mm');
+  const t1 = moment().add(0, 'minutes').format('HH/mm');
   const t2 = moment().add(20, 'minutes').format('HH/mm');
   const t3 = moment().add(30, 'minutes').format('HH/mm');
   const t4 = moment().add(40, 'minutes').format('HH/mm');
