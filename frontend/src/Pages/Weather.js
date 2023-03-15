@@ -27,105 +27,54 @@ ChartJs.register(
 
 
 function Weather() {
+  console.log('weather');
 
   const [data, setData] = useState({});
   const [table, setTable] = useState(<></>);
-  const [snr, setSNR] = useState([]);
+ 
+  //Stores the login information using states
+  
+  const [time, setTime] = useState(moment().format('YYYY/MM/DD/HH/mm/ss'));
+  
+  const [send,setSend] = useState(true);
+  
 
 
   
-  const present = moment().format('YYYY/MM/DD/HH/mm/ss');
+ 
   const t1 = moment().add(0, 'minutes').format('HH/mm');
-  const t2 = moment().add(20, 'minutes').format('HH/mm');
-  const t3 = moment().add(30, 'minutes').format('HH/mm');
-  const t4 = moment().add(40, 'minutes').format('HH/mm');
+  const t2 = moment().add(10, 'minutes').format('HH/mm');
+  const t3 = moment().add(20, 'minutes').format('HH/mm');
+  const t4 = moment().add(30, 'minutes').format('HH/mm');
   const t5 = moment().add(40, 'minutes').format('HH/mm');
   const t6 = moment().add(50, 'minutes').format('HH/mm');
   const t7 = moment().add(60, 'minutes').format('HH/mm');
   const t8 = moment().add(70, 'minutes').format('HH/mm');
 
  
-
-  let SNRValues = []
-
-  useEffect(() => {
-    Object.keys(data).map((key) => {
+function getValues(name) {
+ 
+  let arr = [];
+  Object.keys(data).map((key) => {
         
-      SNRValues.push(data[key]['capacity']);
-        
-      })
-
-      console.log(SNRValues);
-      setTimeout(1000);
-    
-  }, [data]);
-
-  
+    arr.push(data[key][name]);
       
+    })
 
-
-  const SNRdata = {
-    labels: [t1, t2 , t3, t4, t5, t6, t7, t8],
-    datasets: [
-      {
-        label: 'SNR',
-        data: [209.1319580078125, 209.1319580078125,
-          209.1319580078125,
-          209.13198852539062,
-          209.13198852539062,
-          209.1410369873047,
-          209.15345764160156,
-          209.15345764160156
-        ],
-        backgroundColor: 'aqua',
-        borderColor: 'black',
-        pointBorderColor: 'aqua',
-        fill: true,
-        tension: 0.4
-      }
-    ]
-  }
+    // console.log(arr);
+  return arr;
   
+}
 
-  const SNRoptions = {
-    plugins: {
-      legend: true
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Time (hours/seconds)'
-        }
-      },
-      y: {
-        min: 209.10,
-        max: 209.20,
-        title: {
-          display: true,
-          text: 'SNR (dB)'
-        }
-
-      }
-    }
-  }
-
-
-  const pressuredata = {
+//Gets the data for the graphs
+function getData(lineTitle, yValues) {
+ 
+  const data = {
     labels: [t1, t2 , t3, t4, t5, t6, t7, t8],
     datasets: [
       {
-        label: 'Pressure',
-        data: [
-          1013,
-          1013,
-          1013,
-          1013,
-          1013,
-          1013,
-          1017,
-          1017
-        ],
+        label: lineTitle,
+         data: getValues(yValues), 
         backgroundColor: 'aqua',
         borderColor: 'black',
         pointBorderColor: 'aqua',
@@ -135,9 +84,15 @@ function Weather() {
     ]
   }
 
+    // console.log(arr);
+  return data;
+  
+}
 
-
-  const pressureoptions = {
+//Fills the titles and cosmetics for the graphs
+function getOptions(xTitle, yTitle, yValues) {
+ 
+  const options = {
     plugins: {
       legend: true
     },
@@ -145,74 +100,28 @@ function Weather() {
       x: {
         title: {
           display: true,
-          text: 'Time (hours/seconds)'
+          text: xTitle
         }
       },
       y: {
-        min: 1011,
-        max: 1018,
+        min:  Math.min(...(getValues(yValues))),
+        max: Math.max(...(getValues(yValues))),
         title: {
           display: true,
-          text:  'Pressure (mbar)'
+          text: yTitle
         }
 
       }
     }
   }
+
+    // console.log(arr);
+  return options;
   
-
-
-  
-  const chandata = {
-    labels: [t1, t2 , t3, t4, t5, t6, t7, t8],
-    datasets: [
-      {
-        label: 'Channel Capacity',
-        data: [61391228,
-          61391228,
-          61391228,
-          61391228,
-          61391228,
-          61391844,
-          61392688,
-          61392688
-        ],
-        backgroundColor: 'aqua',
-        borderColor: 'black',
-        pointBorderColor: 'aqua',
-        fill: true,
-        tension: 0.4
-      }
-    ]
-  }
-
-
-  
-  const chanoptions = {
-    plugins: {
-      legend: true
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Time (hours/seconds)'
-        }
-      },
-      y: {
-        min: 61391220,
-        max: 61392690,
-        title: {
-          display: true,
-          text:  'Channel Capacity (bits per second)'
-        }
-
-      }
-    }
-  }
+}
   
   
-
+//fetches and adds data to the state variable when oage is loaded
   useEffect(() => {
     async function getData() {
       const parsedData = await getParsedWeatherData();
@@ -223,7 +132,7 @@ function Weather() {
   }, []);
 
 
-
+//displays the values in a table for the specififed time
   useEffect(() => {
     // console.log(data);
 
@@ -262,47 +171,14 @@ function Weather() {
   }, [data]);
 
 
-    //Stores the login information usign states
-  
-    const [time, setCurr] = useState(present);
-  
-    const [send,setSend] = useState(true);
-    const [initialRender, setInitialRender] = useState(false);
-  
-  
-  
-  
-    useEffect(() => {
-  
-      if (initialRender) {
-          // console.log(time);
-          fetchLogin(time);
-      } else{
-          setInitialRender(true)
-    
-        } 
-    
-    }, [send]);
-  
-  
-  
-  
-    //Send the login information to the server for 
-  //verification
-    const fetchLogin = async(currTime) => {
-      // console.log(currTime);
-    }
   
     const handleSubmit = (e) => {
       e.preventDefault();
       //  console.log(e);
-      setCurr(e.target.elements.current.value);
+      setTime(e.target.elements.current.value);
       // console.log("Start:", start);
       // console.log("End:", end);
       setSend(!send);
-  
-      
-      
     };
   
     
@@ -359,7 +235,7 @@ function Weather() {
             <br />
             
             <div style={{
-              width: '1000px',
+              width: '500px',
               height: '1000px',
               padding : '20px'
             }
@@ -367,8 +243,8 @@ function Weather() {
             >
               <h1>SNR vs Time</h1>
             <Line
-            data = {SNRdata}
-            options = {SNRoptions}
+            data = {getData('SNR', 'snr')}
+            options = {getOptions('Time (hours/seconds)', 'SNR (dB)', 'snr')}
             >
 
             </Line>
@@ -376,16 +252,16 @@ function Weather() {
 
             <h1>Pressure vs Time</h1>
             <Line
-            data = {pressuredata}
-            options = {pressureoptions}
+            data = {getData('Pressure', 'pressure')}
+            options = {getOptions('Time (hours/seconds)', 'Pressure (mbar)', 'pressure')}
             >
 
             </Line>
 
             <h1>Channel Capacity vs Time</h1>
             <Line
-            data = {chandata}
-            options = {chanoptions}
+            data = {getData('Channel Capacity', 'capacity')}
+            options = {getOptions('Time (hours/seconds)', 'Channel Capacity (bits per second)', 'capacity')}
             >
 
             </Line>
