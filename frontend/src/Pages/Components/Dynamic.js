@@ -5,6 +5,7 @@ import moment from 'moment';
 
 
 function Dynamic(props) {
+  console.log('dynamic');
 
   const present = moment().format('YYYY/MM/DD/HH/mm/ss');
   const future = moment().add(50, 'minutes').format('YYYY/MM/DD/HH/mm/ss');
@@ -24,11 +25,13 @@ function Dynamic(props) {
     if (initialRender) {
       console.log(start);
   console.log(end);
-  fetchLogin(start, end);
+ 
   } else{
       setInitialRender(true)
 
     } 
+    props.setStartTime(start);
+    props.setEndTime(end);
   
   
   }, [send]);
@@ -36,11 +39,7 @@ function Dynamic(props) {
 
 
 
-  //Send the login information to the server for 
-//verification
-  const fetchLogin = async(startTime, endTime) => {
-    console.log(startTime, endTime);
-  }
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,6 +49,7 @@ function Dynamic(props) {
     // console.log("Start:", start);
     // console.log("End:", end);
     setSend(!send);
+    
 
     
     

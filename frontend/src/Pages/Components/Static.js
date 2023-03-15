@@ -5,6 +5,7 @@ import moment from 'moment';
 
 
 function Static(props) {
+  console.log('static');
 
 
 
@@ -16,7 +17,7 @@ function Static(props) {
   
   const [curr, setCurr] = useState(present);
   
-  const [send,setSend] = useState(true);
+  const [send, setSend] = useState(true);
   const [initialRender, setInitialRender] = useState(false);
 
 
@@ -35,24 +36,12 @@ function Static(props) {
   }, [send]);
 
 
-  
-
-
- 
-
-
-  //Send the login information to the server for 
-//verification
-  const fetchLogin = async(currTime) => {
-    // console.log(currTime);
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     //  console.log(e);
     setCurr(e.target.elements.current.value);
-    // console.log("Start:", start);
-    // console.log("End:", end);
+    props.setStartTime(curr);
+   
     setSend(!send);
 
     

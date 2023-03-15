@@ -19,8 +19,8 @@ function Navigationbar(props){
             {/* <li><Link to="/">Login</Link></li> */}
             <li><Link to="/positioning">Positioning</Link></li>
             <li><Link to="/weather">Weather</Link></li>
-            {/* <li><Link to="/analytics">Analytics</Link></li>
-            <li><Link to="/userpolicy">UserPolicy</Link></li> */}
+            <li><Link to="/analytics">Analytics</Link></li>
+            <li><Link to="/userpolicy">UserPolicy</Link></li>
         </ul>
         <button onClick={handleLogout}>
         Logout {props.name}

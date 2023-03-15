@@ -5,7 +5,8 @@ import {getParsedData} from '../Functions/Fetch';
 
 
 
-function MapDynamic(props) {
+function MapDynamic() {
+  console.log('dynamicmap');
 
   const [data, setData] = useState({});
 
@@ -23,6 +24,7 @@ function MapDynamic(props) {
 
   //The useEffect is used as it renders everything when the page is first made visible
   useEffect(() => {
+    
 
     //Contains the acces token for Mapbox GL JS
     mapboxgl.accessToken = 'pk.eyJ1IjoiY29saW5jcmFzdGEiLCJhIjoiY2xleDgyZ3E4MWwzczNxcW81b2FsMjc0NyJ9.BFWKjxlo5ZFRBrtgYvTGpA';

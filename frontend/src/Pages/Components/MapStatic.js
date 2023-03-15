@@ -5,6 +5,7 @@ import {getParsedData} from '../Functions/Fetch';
 
 
 function MapStatic(props) {
+  console.log('mapstatic');
 
   const [data, setData] = useState({});
 
@@ -165,7 +166,7 @@ mapbox.addLayer({
     source: 'points',
     paint: {
       'circle-radius': 5,
-      'circle-color': 'blue'
+      'circle-color': 'yellow'
     }
   });
 });

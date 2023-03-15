@@ -5,19 +5,37 @@ import Static from './Components/Static';
 import MapStatic from './Components/MapStatic';
 import './Positioning.css';
 import {getParsedData} from './Functions/Fetch';
+import moment from 'moment';
 
 
 
 function Positioning() {
 
     const [dynamic, setDynamic] = useState(false);
+    const [data, setData] = useState({});
     const [display, setDisplay] = useState(<><Static />
     </>);
-    const [map, setMap] = useState(<><MapStatic />
+    const [map, setMap] = useState(<><MapStatic data={data} />
     </>);
     const [button, setButton] = useState('Dynamic');
-    const [data, setData] = useState({});
+    
     const [table, setTable] = useState(<></>);
+    const [startTime, setStartTime] = useState(moment().format('YYYY/MM/DD/HH/mm/ss'));
+    const [endTime, setEndTime] = useState(moment().format('YYYY/MM/DD/HH/mm/ss'));
+
+
+    useEffect(() => {
+      console.log(startTime); 
+      console.log(endTime); 
+      if (dynamic) {
+        setMap(<MapDynamic data={data} startTime={startTime} endTime={endTime}/>)
+      } else {
+        setMap(<MapStatic data={data} startTime={startTime} endTime={endTime}/>)
+        
+      }
+      
+    }, [startTime, data]);
+
 
     useEffect(() => {
       async function getData() {
@@ -106,12 +124,15 @@ function Positioning() {
         
 
         if (dynamic) {
-            setDisplay(<><Dynamic /></>);
-            setMap(<MapDynamic />);
+            setDisplay(<><Dynamic  startTime={startTime} setStartTime={setStartTime}
+              endTime={endTime} setEndTime={setEndTime}
+              /></>);
+            setMap(<MapDynamic data={data} startTime={startTime} endTime={endTime}/>);
             setButton('Single Location');
         } else  {
-            setDisplay(<><Static /></>);
-            setMap(<MapStatic />);
+            setDisplay(<><Static startTime={startTime}setStartTime={setStartTime} 
+              /></>);
+            setMap(<MapStatic data={data} startTime={startTime} />);
             setButton('Path');
         }
         
