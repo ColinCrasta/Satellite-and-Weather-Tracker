@@ -13,6 +13,7 @@ function Analytics() {
   const [end, setEnd] = useState("45.4215:75.6972");
   const [send,setSend] = useState(true);
   const [initialRender, setInitialRender] = useState(false);
+  const [data, setData] = useState({});
 
 
   //Send the login information to the server for 

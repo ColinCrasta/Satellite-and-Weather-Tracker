@@ -39,7 +39,20 @@ function Weather() {
   const [send,setSend] = useState(true);
   
 
-
+  //Rerenders page every 60 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log('reloaded');
+      async function getData() {
+        const parsedData = await getParsedWeatherData();
+        setData(parsedData);
+      }
+      getData();
+      
+      
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
   
  
   const t1 = moment().add(0, 'minutes').format('HH/mm');
@@ -128,8 +141,9 @@ function getOptions(xTitle, yTitle, yValues) {
       setData(parsedData);
     }
     getData();  
+    
 
-  }, []);
+  }, [time]);
 
 
 //displays the values in a table for the specififed time

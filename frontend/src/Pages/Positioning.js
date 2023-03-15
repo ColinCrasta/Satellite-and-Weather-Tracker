@@ -24,6 +24,24 @@ function Positioning() {
     const [endTime, setEndTime] = useState(moment().format('YYYY/MM/DD/HH/mm/ss'));
 
 
+    //Rerenders page every 60 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log('reloaded');
+      async function getData() {
+        const parsedData = await getParsedData();
+        setData(parsedData);
+      }
+      getData();
+      
+      
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  console.log('positioning');
+
+
     useEffect(() => {
       console.log(startTime); 
       console.log(endTime); 
