@@ -212,6 +212,7 @@ app.get('/weather', async (req, res) => {
 app.use('/login', require('./Routes/Login'));
 app.use('/database', require('./Routes/DB.js'));
 app.use('/database/d', require('./Routes/DB.js'));
+app.use('/analytics', require('./Routes/Analytics'));
 
 
 

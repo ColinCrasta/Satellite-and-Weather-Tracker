@@ -80,3 +80,39 @@ export const getParsedData = async () => {
     };
 
 
+    export const getRequestData = async() =>{
+
+      const response = await fetch('http://localhost:5000/analytics/get', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json()).then(res =>{
+    
+    return res;
+  }).catch(error => console.error(error));
+  // const result = await response.text();
+  // return result;
+  // console.log(response);
+  return response;
+  } 
+
+
+
+  export const sendRequestData = async(dat) =>{
+
+    const response = await fetch('http://localhost:5000/analytics/send', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(dat)
+}).then(response => response.json()).then(res =>{
+  // console.log(res.file);
+  return res.file
+}).catch(error => console.error(error));
+// const result = await response.text();
+// return result;
+// console.log(response);
+return response;
+} 
