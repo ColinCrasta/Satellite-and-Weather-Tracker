@@ -12,6 +12,7 @@ import {Chart as ChartJs,
 } from 'chart.js'
 
 import moment from 'moment';
+import Nav from "./Components/Navigationbar";
 
 
 
@@ -202,6 +203,8 @@ function getOptions(xTitle, yTitle, yValues) {
     
     return(
         <div >
+
+          <Nav />
             <h1>
                 Weather
             </h1>

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Link} from 'react-router-dom';
 import Login from "../Login";
 
 function Navigationbar(props){
-
+  const name = useRef(props.name);
 
 
     const handleLogout = (e) => {
@@ -20,7 +20,7 @@ function Navigationbar(props){
             <li><Link to="/positioning">Positioning</Link></li>
             <li><Link to="/weather">Weather</Link></li>
             <li><Link to="/analytics">Analytics</Link></li>
-            <li><Link to="/userpolicy">UserPolicy</Link></li>
+            {/* <li><Link to="/userpolicy">UserPolicy</Link></li> */}
         </ul>
         <button onClick={handleLogout}>
         Logout {props.name}

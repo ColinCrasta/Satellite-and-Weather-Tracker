@@ -74,7 +74,7 @@ const pool = require('../database'); //Connects to the database
         'SELECT * FROM satellite'
       );
 
-      console.log(satRequestRes['rows']);
+      // console.log(satRequestRes['rows']);
 
       res.send({requests: satRequestRes['rows'], sat: sat['rows']});
    

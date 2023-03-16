@@ -6,10 +6,12 @@ import MapStatic from './Components/MapStatic';
 import './Positioning.css';
 import {getParsedData} from './Functions/Fetch';
 import moment from 'moment';
+import Nav from "./Components/Navigationbar";
 
 
 
 function Positioning() {
+  
 
     const [dynamic, setDynamic] = useState(false);
     const [data, setData] = useState({});
@@ -164,6 +166,7 @@ function Positioning() {
 
     return(
         <div>
+          <Nav />
             <h1>
                 Positioning
             </h1>

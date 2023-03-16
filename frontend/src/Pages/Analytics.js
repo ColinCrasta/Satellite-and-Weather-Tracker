@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {getParsedWeatherData, getParsedData, getRequestData, sendRequestData} from './Functions/Fetch';
 import moment from 'moment';
+import Nav from "./Components/Navigationbar";
 
 
 function Analytics() {
@@ -17,6 +18,7 @@ function Analytics() {
   const [request, setRequest] = useState();
   const [requestTable, setRequestTable] = useState(<></>);
   const [table, setTable] = useState(<></>);
+  const [weatherTable, setWeatherTable] = useState(<></>);
 
 
 //fetches and adds data to the state variable when oage is loaded
@@ -122,6 +124,34 @@ useEffect(() => {
 }, [satData]);
 
 
+useEffect(() => {
+  console.log(weatherData);
+  let count = 0;
+  let addTable;
+  try {
+    addTable = 
+          <tr key={1}>
+      <td>{ground}</td>
+      <td>{weatherData[0]['temperature']}</td>
+      <td>{weatherData[0]['humidity']}</td>
+      <td>{weatherData[0]['pressure']}</td>
+      <td>{weatherData[0]['snr']}</td>
+      <td>{weatherData[0]['ber']}</td>
+      <td></td>
+      <td>{weatherData[0]['capacity']}</td>
+
+    </tr>
+        
+  } catch (error) {
+    console.error(error);
+  }
+  
+
+  setWeatherTable(addTable);
+  
+
+}, [weatherData]);
+
 
 
   useEffect(() => {
@@ -204,11 +234,19 @@ useEffect(() => {
 
     return(
         <div>
+
+          <Nav />
+
+
             <h1>
                 Analytics
             </h1>
 
 
+            <br />
+
+
+            <h2>Store Satellite Information</h2>
             <form onSubmit={handleSat}>
         <div>
           <label> Enter the name of the satellite you would like to store data for: </label>
@@ -221,7 +259,7 @@ useEffect(() => {
         <br />
           <br />
 
-          <h2>Satellite Requests and Data Collected</h2>
+          <h3>Satellite Requests and Data Collected</h3>
 
           <table className='my-table'>
       <thead>
@@ -250,7 +288,7 @@ useEffect(() => {
     <br />
           <br />
 
-          <h2>Available Satellites</h2>
+          <h3>Available Satellites</h3>
         <table className='my-table'>
       <thead>
         <tr>
@@ -279,10 +317,12 @@ useEffect(() => {
 
         <form onSubmit={handleStation}>
 
+
+          <h2>Store Location Information</h2>
+
         <div>
             
-          <label> Enter the longitude:latitude of the location you would like to request</label>
-          <input type="text" name='end' defaultValue={ground} />
+          <label> Would you like to store the weather and signal data for the ground station located at {ground}</label>
 
           <br />
           <br /> 
@@ -291,7 +331,31 @@ useEffect(() => {
 
         <button type="submit">Submit</button>
       </form>
+      <br /> 
+
+      <table className='my-table'>
+      <thead>
+        <tr>
+          <th>Location (Lat, Long)</th>
+          <th>Temperature (Celsius)</th>
+          <th>Humidity (%)</th>
+          <th>Pressure (mbar)</th>
+          <th>SNR (dB)</th>
+          <th>BER</th>
+          <th>Modulation Scheme</th>
+          <th>Channel Capacity (bps)</th>
+
+        </tr>
+      </thead>
+      <tbody>
+      
+          {weatherTable}
+        
+      </tbody>
+    </table>
         </div>
+
+        
 
     );
     
