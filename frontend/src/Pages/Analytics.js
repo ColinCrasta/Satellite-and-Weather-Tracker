@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {getParsedWeatherData, getParsedData} from './Functions/Fetch';
 
 
 function Analytics() {
@@ -9,25 +10,29 @@ function Analytics() {
 
     //Stores the login information usign states
   
-  const [start, setStart] = useState("Telesat-1");
+  const [satname, setSatname] = useState();
   const [end, setEnd] = useState("45.4215:75.6972");
   const [send,setSend] = useState(true);
   const [initialRender, setInitialRender] = useState(false);
   const [data, setData] = useState({});
 
 
-  //Send the login information to the server for 
-//verification
-const fetchLogin = async(startTime, endTime) => {
-    console.log(startTime, endTime);
+//fetches and adds data to the state variable when oage is loaded
+useEffect(() => {
+  async function getData() {
+    const parsedData = await getParsedWeatherData();
+    setData(parsedData);
   }
+  getData();  
+  
+
+}, []);
 
 
   useEffect(() => {
     if (initialRender) {
-      console.log(start);
+      console.log(satname);
   console.log(end);
-  fetchLogin(start, end);
   } else{
       setInitialRender(true)
 
@@ -38,17 +43,10 @@ const fetchLogin = async(startTime, endTime) => {
 
 
 
-
-
-
-
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(e);
-        setStart(e.target.elements.start.value);
+        setSatname(e.target.elements.start.value);
         setEnd(e.target.elements.end.value);
         // console.log("Start:", start);
         // console.log("End:", end);
@@ -69,7 +67,7 @@ const fetchLogin = async(startTime, endTime) => {
             <form onSubmit={handleSubmit}>
         <div>
           <label> Enter the name of the satellite you would like to request</label>
-          <input type="text" name='start' defaultValue={start} />
+          <input type="text" name='start' defaultValue={satname} />
           <br />
           <br />
         </div>

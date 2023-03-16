@@ -55,6 +55,60 @@ function Weather() {
   }, []);
   
  
+  
+//fetches and adds data to the state variable when oage is loaded
+  useEffect(() => {
+    async function getData() {
+      const parsedData = await getParsedWeatherData();
+      setData(parsedData);
+    }
+    getData();  
+    
+
+  }, [time]);
+
+
+//displays the values in a table for the specififed time
+  useEffect(() => {
+    // console.log(data);
+
+    let count = 0;
+    let addTable; 
+      addTable = Object.keys(data).map((key) => {
+        // console.log(data[0]['capacity']);
+
+        
+        if (key === '0'){
+
+          count++
+
+          return(
+            <tr key={count}>
+        <td>45.4215, -75.6972</td>
+        <td>{data[key]['temperature']}</td>
+        <td>{data[key]['humidity']}</td>
+        <td>{data[key]['pressure']}</td>
+        <td>{data[key]['snr']}</td>
+        <td>{data[key]['ber']}</td>
+        <td></td>
+        <td>{data[key]['capacity']}</td>
+        
+
+      </tr>
+          )
+        }
+
+
+
+    })
+    // console.log(addTable);
+    setTable(addTable);
+    
+  }, [data]);
+
+
+
+  
   const t1 = moment().add(0, 'minutes').format('HH/mm');
   const t2 = moment().add(10, 'minutes').format('HH/mm');
   const t3 = moment().add(20, 'minutes').format('HH/mm');
@@ -133,56 +187,6 @@ function getOptions(xTitle, yTitle, yValues) {
   
 }
   
-  
-//fetches and adds data to the state variable when oage is loaded
-  useEffect(() => {
-    async function getData() {
-      const parsedData = await getParsedWeatherData();
-      setData(parsedData);
-    }
-    getData();  
-    
-
-  }, [time]);
-
-
-//displays the values in a table for the specififed time
-  useEffect(() => {
-    // console.log(data);
-
-    let count = 0;
-    let addTable; 
-      addTable = Object.keys(data).map((key) => {
-        // console.log(data[0]['capacity']);
-
-        
-        if (key === '0'){
-
-          count++
-
-          return(
-            <tr key={count}>
-        <td>45.4215, -75.6972</td>
-        <td>{data[key]['temperature']}</td>
-        <td>{data[key]['humidity']}</td>
-        <td>{data[key]['pressure']}</td>
-        <td>{data[key]['snr']}</td>
-        <td>{data[key]['ber']}</td>
-        <td></td>
-        <td>{data[key]['capacity']}</td>
-        
-
-      </tr>
-          )
-        }
-
-
-
-    })
-    // console.log(addTable);
-    setTable(addTable);
-    
-  }, [data]);
 
 
   
