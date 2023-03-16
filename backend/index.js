@@ -170,39 +170,75 @@ app.get('/', async (req, res) => {
 // });
 
 
-
+//positioning data retrieval
 app.get('/data', async (req, res) => {
 
   
   try {
+    
+    fs.writeFile('G:/My Drive/Positioning/Request/request.txt', 'testin', (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('An error occurred while writing to the file');
+      }
+      console.log('File created and data written successfully');
+    
+
+
+    // fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {
+    //   if (err) throw err;
+    //   console.log('File read successfully');
+    //   // console.log('Data:', data);
+    //   res.send({ file: data });
+    // });
 
     fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {
       if (err) throw err;
-    // console.log(data);
-    
-      res.send( {file: data});
+      console.log('File read successfully');
+      // console.log('Data:', data);
+      res.send({ file: data });
     });
+
+
+  });
+
+    // fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {
+    //   if (err) throw err;
+    // // console.log(data);
+    
+    //   res.send( {file: data});
+    // });
   } catch (error) {
     console.log(error.message);
   }
 });
 
 
-
+//weather data retrieval
 app.get('/weather', async (req, res) => {
-
-  
   try {
+    fs.writeFile('G:/My Drive/Weather/Request/request.txt', 'testing', (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('An error occurred while writing to the file');
+      }
+      console.log('File created and data written successfully');
+    
+
 
     fs.readFile('./Data/weather_data.json', 'utf-8', (err, data) => {
       if (err) throw err;
-    // console.log(data);
-    
-      res.send( {file: data});
+      console.log('File read successfully');
+      // console.log('Data:', data);
+      res.send({ file: data });
     });
+  });
   } catch (error) {
     console.log(error.message);
   }
+
+
+  
 });
 
 
