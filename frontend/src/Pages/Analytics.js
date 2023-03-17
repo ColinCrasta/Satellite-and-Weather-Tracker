@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {getParsedWeatherData, getParsedData, getRequestData, sendRequestData} from './Functions/Fetch';
 import moment from 'moment';
 import Nav from "./Components/Navigationbar";
+import './Color.css'
 
 
 function Analytics() {
@@ -160,6 +161,8 @@ useEffect(() => {
       setInitialRender(true)
 
     } 
+
+    
   
   
   }, [send]);
@@ -211,6 +214,7 @@ useEffect(() => {
         setSatname(e.target.elements.start.value);
         sendRequestData(dat);
         setSend(!send);
+        window.location.reload()
       } else {
         window.alert('Satellite name is not entered correctly, does not exist, or is not available currently'); 
       }
@@ -223,7 +227,15 @@ useEffect(() => {
 
 
         setGround(e.target.elements.end.value);
+        
+        
+        
         setSend(!send);
+
+        
+
+        
+
     
         
         
@@ -231,6 +243,8 @@ useEffect(() => {
 
 
     return(
+      <div class="bg-custom text-center">
+          <div class="container px-2 text-start">
         <div>
 
           <Nav />
@@ -247,18 +261,19 @@ useEffect(() => {
             <h2>Store Satellite Information</h2>
             <form onSubmit={handleSat}>
         <div>
-          <label> Enter the name of the satellite you would like to store data for: </label>
+          <label> Enter the name of the satellite you would like to store data for:  </label>
           <input type="text" name='start' defaultValue={satname} />
           <br />
           <br />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary btn-rounded">Submit</button>
         </form>
         <br />
           <br />
 
           <h3>Satellite Requests and Data Collected</h3>
 
+          <div class="table table-secondary">
           <table className='my-table'>
       <thead>
         <tr>
@@ -280,12 +295,14 @@ useEffect(() => {
 
       </tbody>
     </table>
+    </div>
 
 
     <br />
           <br />
 
           <h3>Available Satellites</h3>
+          <div class="table table-secondary">
         <table className='my-table'>
       <thead>
         <tr>
@@ -306,6 +323,7 @@ useEffect(() => {
 
       </tbody>
     </table>
+    </div>
 
         <br />
           <br />
@@ -318,17 +336,17 @@ useEffect(() => {
 
         <div>
             
-          <label> Would you like to store the weather and signal data for the ground station located at {ground}</label>
+          <label> Real time data of the weather and signal data for the ground station located at {ground}</label>
 
           <br />
           <br /> 
 
         </div>
 
-        <button type="submit">Submit</button>
+        {/* <button type="submit">Submit</button> */}
       </form>
       <br /> 
-
+      <div class="table table-secondary">
       <table className='my-table'>
       <thead>
         <tr>
@@ -349,6 +367,12 @@ useEffect(() => {
         
       </tbody>
     </table>
+    </div>
+
+    <br />
+          <br /> 
+        </div>
+        </div>
         </div>
 
         

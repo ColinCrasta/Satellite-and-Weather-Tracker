@@ -70,13 +70,11 @@ function Dynamic(props) {
         <div>
       <h3> Path of the Satellites </h3>
       </div>
-      <br />
-      <br />
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label> Enter Start Time in year/month/day/hour/minute/second format: </label>
-          <input type="text" name='start' defaultValue={start} />
+          <label class="form-label" style={{ fontSize: '20px' }}> The following data is real-time at the time in year/month/day/hour/minute/second format: 2023/03/17/03/26/16 </label>
+          {/* <input type="text" name='start' defaultValue={start} /> */}
           <br />
           <br />
         </div>
@@ -91,7 +89,7 @@ function Dynamic(props) {
 
         </div> */}
 
-        <button type="submit">Submit</button>
+        {/* <button type="submit">Submit</button> */}
       </form>
 
     </div>

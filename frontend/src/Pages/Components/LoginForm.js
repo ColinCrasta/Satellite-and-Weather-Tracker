@@ -80,7 +80,7 @@ function LoginForm(props) {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label> Username </label>
+          <label> Username: </label>
           <input type="text" value={name} onChange={handleName}/>
           <br />
           <br />
@@ -90,16 +90,17 @@ function LoginForm(props) {
             {/* Setting the type to password makes sure
             the password input is not revealed but for 
             user experience it is left at "text"*/}
-          <label> Password </label>
+          <label> Password: </label>
           <input type="text" value={pw} onChange={handlePW}/>
 
           <br />
           <br />
 
         </div>
-        <button onClick={handleRegister}>Register</button>
+        <button onClick={handleRegister} class="btn btn-primary btn-rounded-3">Register Now</button>
         <br />
-        <button type="submit">Login</button>
+        <br />
+        <button type="submit" class="btn btn-primary btn-rounded-3">Login</button>
       </form>
     </div>
   );

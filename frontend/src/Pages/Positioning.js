@@ -7,7 +7,7 @@ import './Positioning.css';
 import {getParsedData} from './Functions/Fetch';
 import moment from 'moment';
 import Nav from "./Components/Navigationbar";
-
+import './Color.css'
 
 
 function Positioning() {
@@ -151,7 +151,7 @@ function Positioning() {
             setDisplay(<><Static startTime={startTime}setStartTime={setStartTime} 
               /></>);
             setMap(<MapStatic data={data} startTime={startTime} />);
-            setButton('Path');
+            setButton('Trajectory');
         }
         
         
@@ -160,21 +160,31 @@ function Positioning() {
 
       function handleChange(){
         // setStartTime()
+        // window.location.reload()
         setDynamic(!dynamic);
       }
 
     return(
-        <div>
+        <div class="bg-custom text-center">
+          <div class="container px-2 text-start">
           <Nav />
+
+          <br />
+          <div class="d-flex justify-content-center">
             <h1>
                 Positioning
             </h1>
+            </div>
 
             <br />
             <br />
             <br />
-            <button onClick={handleChange}>{button}</button>
 
+            <p>Click to view the trajectory of the satellites: </p>
+            <div class="d-flex justify-content-left">
+              
+    <button onClick={handleChange} class="btn btn-primary btn-rounded">{button}</button>
+  </div>
             <br />
             <br />
             <br />
@@ -183,16 +193,16 @@ function Positioning() {
             {display}
 
             <br />
-            <br />
-            <br />
+            <h4>Interactive Globe</h4>
             {map}
 
             <br />
             <br />
             <br />
 <div class="table table-secondary">
-  
-            <table className='my-table'>
+
+  <h4>Individual Satellite Data</h4>
+            <table className='my-table rounded-3 '>
       <thead>
         <tr>
           <th>Satellite</th>
@@ -213,8 +223,16 @@ function Positioning() {
       </tbody>
     </table>
 
-    </div>
+    <br />
+            <br />
 
+    </div>
+    <br />
+            <br />
+            <br />
+            <br />
+
+    </div>
 
         </div>
 

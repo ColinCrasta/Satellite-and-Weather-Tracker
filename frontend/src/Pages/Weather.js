@@ -13,6 +13,7 @@ import {Chart as ChartJs,
 
 import moment from 'moment';
 import Nav from "./Components/Navigationbar";
+import './Color.css'
 
 
 
@@ -145,9 +146,10 @@ function getData(lineTitle, yValues) {
          data: getValues(yValues), 
         backgroundColor: 'aqua',
         borderColor: 'black',
-        pointBorderColor: 'aqua',
+        pointBorderColor: 'black',
         fill: true,
-        tension: 0.4
+        tension: 0.4,
+        color : 'black'
       }
     ]
   }
@@ -162,14 +164,22 @@ function getOptions(xTitle, yTitle, yValues) {
  
   const options = {
     plugins: {
-      legend: true
+      legend: {
+        labels: {
+          color: 'black'
+        }
+      }
     },
     scales: {
       x: {
         
         title: {
           display: true,
-          text: xTitle
+          text: xTitle,
+          color: "black"
+        },
+        ticks: {
+          color: "black"
         }
       },
       y: {
@@ -177,7 +187,11 @@ function getOptions(xTitle, yTitle, yValues) {
         max: Math.max(...(getValues(yValues)))*1.0001,
         title: {
           display: true,
-          text: yTitle
+          text: yTitle,
+          color: "black"
+        },
+        ticks: {
+          color: "black"
         }
 
       }
@@ -203,34 +217,38 @@ function getOptions(xTitle, yTitle, yValues) {
   
     
     return(
+      <div class="bg-custom text-center">
+          <div class="container px-2 text-start">
         <div >
 
           <Nav />
+          <div class="d-flex justify-content-center">
             <h1>
                 Weather
             </h1>
+            </div>
             
             <br />
             <br />
             <br />
             <form onSubmit={handleSubmit}>
         <div>
-          <label> Enter Time in year/month/day/hour/minute/second</label>
-          <input type="text" name='current' defaultValue={time} />
+        <label class="form-label" style={{ fontSize: '20px' }}> The following data is real-time at the time in year/month/day/hour/minute/second format: {time}</label>
+          
           <br />
           <br />
         </div>
 
         
 
-        <button type="submit">Submit</button>
+        {/* <button type="submit">Submit</button> */}
       </form>
 
             <br />
             <br />
             <br />
-
-
+<h4>Ground Station Data</h4>
+<div class="table table-secondary">
             <table className='my-table'>
       <thead>
         <tr>
@@ -251,10 +269,12 @@ function getOptions(xTitle, yTitle, yValues) {
         
       </tbody>
     </table>
+    </div>
 
             <br />
             <br />
             <br />
+            <h2>Graphs</h2>
             
             <div style={{
               width: '500px',
@@ -263,32 +283,47 @@ function getOptions(xTitle, yTitle, yValues) {
             }
             }
             >
-              <h1>SNR vs Time</h1>
+              <div class="graph-container">
+                
+                  
+              <h4>SNR vs Time</h4>
             <Line
              data = {getData('SNR', 'snr')}
              options = {getOptions('Time (hours/seconds)', 'SNR (dB)', 'snr')}
             >
 
             </Line>
+            <br />
+            <br />
+            
 
 
-            <h1>Humidity vs Time</h1>
+            <h4>Humidity vs Time</h4>
             <Line
             data = {getData('Humidity', 'humidity')}
-            options = {getOptions('Time (hours/seconds)', 'Hmidity (%)', 'humidity')}
+            options = {getOptions('Time (hours/seconds)', 'Humidity (%)', 'humidity')}
             >
 
             </Line>
+            <br />
+            <br />
 
-            <h1>Channel Capacity vs Time</h1>
+            <h4>Channel Capacity vs Time</h4>
             <Line
             data = {getData('Channel Capacity', 'capacity')}
             options = {getOptions('Time (hours/seconds)', 'Channel Capacity (bits per second)', 'capacity')}
             >
 
             </Line>
+
+
+            
+            </div>
             </div>
         </div>
+
+       </div>
+       </div>
 
     );
     

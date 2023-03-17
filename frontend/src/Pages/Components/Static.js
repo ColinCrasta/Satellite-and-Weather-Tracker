@@ -59,20 +59,17 @@ function Static(props) {
         <div>
       <h3> Satellite Position</h3>
       </div>
-      <br />
-      <br />
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label> Enter Time in year/month/day/hour/minute/second format: </label>
-          <input type="text" name='current' defaultValue={curr} />
-          <br />
+          <label class="form-label" style={{ fontSize: '20px' }}> The following data is real-time at the time in year/month/day/hour/minute/second format: {curr}</label>
+          {/* <input type="text" name='current' defaultValue={curr} class="form-control" /> */}
           <br />
         </div>
 
         
 
-        <button type="submit">Submit</button>
+        {/* <button type="submit" class="btn btn-primary">Submit</button> */}
       </form>
       
     </div>

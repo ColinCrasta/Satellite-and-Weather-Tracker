@@ -105,7 +105,7 @@ const fetchLogin = async(uname, pword) => {
     
           <form onSubmit={handleSubmit}>
             <div>
-              <label> Username </label>
+              <label> Username:  </label>
               <input type="text" value={name} onChange={handleName}/>
               <br />
               <br />
@@ -115,16 +115,17 @@ const fetchLogin = async(uname, pword) => {
                 {/* Setting the type to password makes sure
                 the password input is not revealed but for 
                 user experience it is left at "text"*/}
-              <label> Password </label>
+              <label> Password: </label>
               <input type="text" value={pw} onChange={handlePW}/>
     
               <br />
               <br />
     
             </div>
-            <button onClick={handleBack}>Back</button>
+            <button onClick={handleBack} class="btn btn-primary btn-rounded">Back</button>
             <br />
-            <button type="submit">Register</button>
+            <br />
+            <button type="submit"class="btn btn-primary btn-rounded">Register</button>
           </form>
         </div>
       );

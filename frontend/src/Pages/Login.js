@@ -52,9 +52,26 @@ function Login() {
 
   return (
 
+    <div class="bg-custom text-center">
+          <div class="container px-2 text-start">
     <div>
     {display}
+    <br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br />
     </div>
+    </div>
+    </div>
+
 
   );
 }
