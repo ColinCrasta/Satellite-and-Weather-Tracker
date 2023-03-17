@@ -85,7 +85,6 @@ function Positioning() {
           <td>9000</td>
           <td>{data[key]['lat'].split('deg')[0]}:{data[key]['lon'].split('deg')[0]}</td>
           <td>{data[key]['velocity ']}</td>
-          <td></td>
           <td>{data[key]['geocentric position(km)  ']}</td>
           <td>{data[key]['distance']}</td>
 
@@ -115,7 +114,6 @@ function Positioning() {
           <td>9000</td>
           <td>{data[key]['lat'].split('deg')[0]}:{data[key]['lon'].split('deg')[0]}</td>
           <td>{data[key]['velocity ']}</td>
-          <td></td>
           <td>{data[key]['geocentric position(km)  ']}</td>
           <td>{data[key]['distance']}</td>
 
@@ -161,6 +159,7 @@ function Positioning() {
 
 
       function handleChange(){
+        // setStartTime()
         setDynamic(!dynamic);
       }
 
@@ -191,7 +190,8 @@ function Positioning() {
             <br />
             <br />
             <br />
-
+<div class="table table-secondary">
+  
             <table className='my-table'>
       <thead>
         <tr>
@@ -199,7 +199,6 @@ function Positioning() {
           <th>Altitude (m)</th>
           <th>Location (lat:long)</th>
           <th>Orbital Velocity in vector format(km/s)</th>
-          <th>Orbital Period</th>
           <th>Position Vector (xyz in km)</th>
           <th>Distance from Ground Station (km)</th>
 
@@ -213,6 +212,8 @@ function Positioning() {
 
       </tbody>
     </table>
+
+    </div>
 
 
         </div>

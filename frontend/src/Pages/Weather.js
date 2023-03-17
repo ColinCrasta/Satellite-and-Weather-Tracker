@@ -166,14 +166,15 @@ function getOptions(xTitle, yTitle, yValues) {
     },
     scales: {
       x: {
+        
         title: {
           display: true,
           text: xTitle
         }
       },
       y: {
-        min:  Math.min(...(getValues(yValues))),
-        max: Math.max(...(getValues(yValues))),
+        min:  Math.min(...(getValues(yValues)))*0.9999,
+        max: Math.max(...(getValues(yValues)))*1.0001,
         title: {
           display: true,
           text: yTitle
@@ -264,17 +265,17 @@ function getOptions(xTitle, yTitle, yValues) {
             >
               <h1>SNR vs Time</h1>
             <Line
-            data = {getData('SNR', 'snr')}
-            options = {getOptions('Time (hours/seconds)', 'SNR (dB)', 'snr')}
+             data = {getData('SNR', 'snr')}
+             options = {getOptions('Time (hours/seconds)', 'SNR (dB)', 'snr')}
             >
 
             </Line>
 
 
-            <h1>Pressure vs Time</h1>
+            <h1>Humidity vs Time</h1>
             <Line
-            data = {getData('Pressure', 'pressure')}
-            options = {getOptions('Time (hours/seconds)', 'Pressure (mbar)', 'pressure')}
+            data = {getData('Humidity', 'humidity')}
+            options = {getOptions('Time (hours/seconds)', 'Hmidity (%)', 'humidity')}
             >
 
             </Line>

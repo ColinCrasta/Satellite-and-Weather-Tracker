@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {getParsedData} from '../Functions/Fetch';
+import moment from 'moment';
 
 
 function MapStatic(props) {

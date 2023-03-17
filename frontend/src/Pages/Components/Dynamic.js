@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import moment from 'moment';
+import {getParsedWeatherData, getParsedData, getRequestData, sendRequestData} from '../Functions/Fetch';
 
 
 
@@ -38,7 +39,6 @@ function Dynamic(props) {
 
 
 
-
   
 
   const handleSubmit = (e) => {
@@ -48,6 +48,10 @@ function Dynamic(props) {
     setEnd(e.target.elements.end.value);
     // console.log("Start:", start);
     // console.log("End:", end);
+
+
+
+
     setSend(!send);
     
 
@@ -77,7 +81,7 @@ function Dynamic(props) {
           <br />
         </div>
 
-        <div>
+        {/* <div>
             
           <label> Enter End Time in year/month/day/hour/minute/second format: </label>
           <input type="text" name='end' defaultValue={end} />
@@ -85,7 +89,7 @@ function Dynamic(props) {
           <br />
           <br /> 
 
-        </div>
+        </div> */}
 
         <button type="submit">Submit</button>
       </form>

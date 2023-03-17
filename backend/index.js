@@ -176,23 +176,16 @@ app.get('/data', async (req, res) => {
   
   try {
     
-    fs.writeFile('G:/My Drive/Positioning/Request/request.txt', 'testin', (err) => {
+    fs.writeFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt', 'testin', (err) => {
       if (err) {
         console.error(err);
         return res.status(500).send('An error occurred while writing to the file');
       }
       console.log('File created and data written successfully');
     
+ 
 
-
-    // fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {
-    //   if (err) throw err;
-    //   console.log('File read successfully');
-    //   // console.log('Data:', data);
-    //   res.send({ file: data });
-    // });
-
-    fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {
+    fs.readFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Response/data.txt', 'utf-8', (err, data) => {
       if (err) throw err;
       console.log('File read successfully');
       // console.log('Data:', data);
@@ -201,13 +194,6 @@ app.get('/data', async (req, res) => {
 
 
   });
-
-    // fs.readFile('./Data/data.txt', 'utf-8', (err, data) => {
-    //   if (err) throw err;
-    // // console.log(data);
-    
-    //   res.send( {file: data});
-    // });
   } catch (error) {
     console.log(error.message);
   }
@@ -217,7 +203,7 @@ app.get('/data', async (req, res) => {
 //weather data retrieval
 app.get('/weather', async (req, res) => {
   try {
-    fs.writeFile('G:/My Drive/Weather/Request/request.txt', 'testing', (err) => {
+    fs.writeFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt', 'testing', (err) => {
       if (err) {
         console.error(err);
         return res.status(500).send('An error occurred while writing to the file');
@@ -225,8 +211,8 @@ app.get('/weather', async (req, res) => {
       console.log('File created and data written successfully');
     
 
-
-    fs.readFile('./Data/weather_data.json', 'utf-8', (err, data) => {
+// './Data/weather_data.json'
+    fs.readFile('C:/Users/Colin/Desktop/SharedFiles/weather/Response/weather_data.json', 'utf-8', (err, data) => {
       if (err) throw err;
       console.log('File read successfully');
       // console.log('Data:', data);

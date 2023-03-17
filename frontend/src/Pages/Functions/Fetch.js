@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from 'moment';
 
 
 
@@ -41,7 +42,7 @@ export const getParsedWeatherData = async () => {
 
 
 
-export const getPosFile = async() =>{
+export const getPosFile = async(time) =>{
 
     const response = await fetch('http://localhost:5000/data', {
   method: 'GET',
@@ -62,10 +63,10 @@ return response;
 
 
 
-export const getParsedData = async () => {
+export const getParsedData = async (time = moment().format('YYYY/MM/DD/HH/mm/ss')) => {
     let parsedData;
     try {
-      await getPosFile().then(res =>{
+      await getPosFile(time).then(res =>{
         parsedData = JSON.parse(res);
       });
       // console.log(data); 
@@ -80,7 +81,7 @@ export const getParsedData = async () => {
     };
 
 
-    export const getRequestData = async() =>{
+export const getRequestData = async() =>{
 
       const response = await fetch('http://localhost:5000/analytics/get', {
     method: 'GET',

@@ -62,7 +62,6 @@ useEffect(() => {
       <td>9000</td>
       <td>{key['lastLocation']}</td>
       <td>{key['lastOrbitalSpeed']}</td>
-      <td></td>
       <td>{key['lastPositionVector']}</td>
       <td>{key['groundStationDist']}</td>
       <td>{key['dateRecorded']}</td>
@@ -105,7 +104,6 @@ useEffect(() => {
       <td>9000</td>
       <td>{satData[key]['lat'].split('deg')[0]}:{satData[key]['lon'].split('deg')[0]}</td>
       <td>{satData[key]['velocity ']}</td>
-      <td></td>
       <td>{satData[key]['geocentric position(km)  ']}</td>
       <td>{satData[key]['distance']}</td>
 
@@ -268,7 +266,6 @@ useEffect(() => {
           <th>Altitude (m)</th>
           <th>Location (lat:long)</th>
           <th>Orbital Velocity in vector format(km/s)</th>
-          <th>Orbital Period</th>
           <th>Position Vector (xyz in km)</th>
           <th>Distance from Ground Station (km)</th>
           <th>Date Collected (YYYY/MM/DD/HH/mm/ss)</th>
@@ -296,7 +293,6 @@ useEffect(() => {
           <th>Altitude (m)</th>
           <th>Location (lat:long)</th>
           <th>Orbital Velocity in vector format(km/s)</th>
-          <th>Orbital Period</th>
           <th>Position Vector (xyz in km)</th>
           <th>Distance from Ground Station (km)</th>
 
