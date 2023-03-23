@@ -24,22 +24,26 @@ function Positioning() {
     const [table, setTable] = useState(<></>);
     const [startTime, setStartTime] = useState(moment().format('YYYY/MM/DD/HH/mm/ss'));
     const [endTime, setEndTime] = useState(moment().format('YYYY/MM/DD/HH/mm/ss'));
+    const [name, setName] = useState('allsatellites');
 
 
     //Rerenders page every 60 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       console.log('reloaded');
-      async function getData() {
-        const parsedData = await getParsedData();
+      async function getData(time, name) {
+        const parsedData = await getParsedData(time, name);
         setData(parsedData);
       }
-      getData();
-      
+      getData(startTime, name);
       
     }, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    console.log('ewetwt');
+  }, [name, startTime]);
 
   console.log('positioning');
 
@@ -47,23 +51,25 @@ function Positioning() {
     useEffect(() => {
       console.log(startTime); 
       console.log(endTime); 
+      console.log(name);
       if (dynamic) {
-        setMap(<MapDynamic data={data} startTime={startTime} endTime={endTime}/>)
+        setMap(<MapDynamic data={data} startTime={startTime} endTime={endTime} name={name}/>)
       } else {
-        setMap(<MapStatic data={data} startTime={startTime} endTime={endTime}/>)
+        setMap(<MapStatic data={data} startTime={startTime} endTime={endTime} name={name}/>)
         
       }
       
-    }, [startTime, data]);
+    }, [startTime, data, name]);
 
 
     useEffect(() => {
-      async function getData() {
-        const parsedData = await getParsedData();
+      async function getData(time, name) {
+        const parsedData = await getParsedData(time, name);
         setData(parsedData);
       }
-      getData();  
-    }, []);
+      getData(startTime,name);  
+      console.log('sent');
+    }, [startTime, name]);
   
     useEffect(() => {
       // console.log(data);
@@ -144,18 +150,24 @@ function Positioning() {
         if (dynamic) {
             setDisplay(<><Dynamic  startTime={startTime} setStartTime={setStartTime}
               endTime={endTime} setEndTime={setEndTime}
+              name={name}
+              setName={setName}
+              data={data}
               /></>);
             setMap(<MapDynamic data={data} startTime={startTime} endTime={endTime}/>);
             setButton('Single Location');
         } else  {
             setDisplay(<><Static startTime={startTime}setStartTime={setStartTime} 
+              name={name}
+              setName={setName}
+              data={data}
               /></>);
             setMap(<MapStatic data={data} startTime={startTime} />);
             setButton('Trajectory');
         }
         
         
-      }, [dynamic]);
+      }, [dynamic, data]);
 
 
       function handleChange(){
@@ -165,12 +177,12 @@ function Positioning() {
       }
 
     return(
-        <div class="bg-custom text-center">
-          <div class="container px-2 text-start">
+        <div className="bg-custom text-center">
+          <div className="container px-2 text-start">
           <Nav />
 
           <br />
-          <div class="d-flex justify-content-center">
+          <div className="d-flex justify-content-center">
             <h1>
                 Positioning
             </h1>
@@ -181,9 +193,9 @@ function Positioning() {
             <br />
 
             <p>Click to view the trajectory of the satellites: </p>
-            <div class="d-flex justify-content-left">
+            <div className="d-flex justify-content-left">
               
-    <button onClick={handleChange} class="btn btn-primary btn-rounded">{button}</button>
+    <button onClick={handleChange} className="btn btn-primary btn-rounded">{button}</button>
   </div>
             <br />
             <br />
@@ -199,7 +211,7 @@ function Positioning() {
             <br />
             <br />
             <br />
-<div class="table table-secondary">
+<div className="table table-secondary">
 
   <h4>Individual Satellite Data</h4>
             <table className='my-table rounded-3 '>

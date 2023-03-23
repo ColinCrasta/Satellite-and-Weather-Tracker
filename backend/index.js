@@ -171,12 +171,17 @@ app.get('/', async (req, res) => {
 
 
 //positioning data retrieval
-app.get('/data', async (req, res) => {
+app.post('/data', async (req, res) => {
 
   
   try {
     
-    fs.writeFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt', 'testin', (err) => {
+    console.log(req.body.time);
+    console.log(req.body.name);
+
+
+
+    fs.writeFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt', req.body.time + ':' + req.body.name, (err) => {
       if (err) {
         console.error(err);
         return res.status(500).send('An error occurred while writing to the file');

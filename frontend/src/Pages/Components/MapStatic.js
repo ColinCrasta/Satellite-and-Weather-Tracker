@@ -11,11 +11,11 @@ function MapStatic(props) {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    async function getData() {
-      const parsedData = await getParsedData();
+    async function getData(time, name) {
+      const parsedData = await getParsedData(time, name);
       setData(parsedData);
     }
-    getData();  
+    getData(props.startTime, props.name);  
   }, []);
 
   //The useEffect is used as it renders everything when the page is first made visible

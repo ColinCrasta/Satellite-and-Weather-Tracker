@@ -42,13 +42,16 @@ export const getParsedWeatherData = async () => {
 
 
 
-export const getPosFile = async(time) =>{
+export const getPosFile = async(time, name) =>{
+
+  const bodyData = {time: time, name: name};
 
     const response = await fetch('http://localhost:5000/data', {
-  method: 'GET',
+  method: 'POSt',
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  body: JSON.stringify(bodyData)
 }).then(response => response.json()).then(res =>{
   // console.log(res.file);
   return res.file
@@ -63,10 +66,10 @@ return response;
 
 
 
-export const getParsedData = async (time = moment().format('YYYY/MM/DD/HH/mm/ss')) => {
+export const getParsedData = async (time = moment().format('YYYY/MM/DD/HH/mm/ss'), name="allsatellites") => {
     let parsedData;
     try {
-      await getPosFile(time).then(res =>{
+      await getPosFile(time, name).then(res =>{
         parsedData = JSON.parse(res);
       });
       // console.log(data); 

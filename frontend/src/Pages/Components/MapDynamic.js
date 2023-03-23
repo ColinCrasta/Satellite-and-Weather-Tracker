@@ -5,7 +5,7 @@ import {getParsedData} from '../Functions/Fetch';
 
 
 
-function MapDynamic() {
+function MapDynamic(props) {
   console.log('dynamicmap');
 
   const [data, setData] = useState({});
@@ -13,11 +13,11 @@ function MapDynamic() {
 
 
   useEffect(() => {
-    async function getData() {
-      const parsedData = await getParsedData();
+    async function getData(time, name) {
+      const parsedData = await getParsedData(time, name);
       setData(parsedData);
     }
-    getData();  
+    getData(props.startTime, props.name);  
   }, []);
 
 
@@ -171,8 +171,7 @@ function addLines(pointsData) {
 
         //adds the coordiantes plus the lines to the globe
         mapbox.getSource('coordinates').setData(coordData);
-        mapbox.setPaintProperty('connectors', 'color', 'blue'); 
-    
+        
         
       }
     });

@@ -15,7 +15,7 @@ function Dynamic(props) {
 
     //Stores the login information usign states
   
-  const [start, setStart] = useState(present);
+  const [time, setTime] = useState(present);
   const [end, setEnd] = useState(future);
   const [send,setSend] = useState(true);
   const [initialRender, setInitialRender] = useState(false);
@@ -24,14 +24,14 @@ function Dynamic(props) {
 
   useEffect(() => {
     if (initialRender) {
-      console.log(start);
+      console.log(time);
   console.log(end);
  
   } else{
       setInitialRender(true)
 
     } 
-    props.setStartTime(start);
+    props.setStartTime(time);
     props.setEndTime(end);
   
   
@@ -44,10 +44,26 @@ function Dynamic(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(e);
-    setStart(e.target.elements.start.value);
-    setEnd(e.target.elements.end.value);
-    // console.log("Start:", start);
-    // console.log("End:", end);
+    setTime(e.target.elements.time.value);
+    props.setStartTime(e.target.elements.time.value);
+
+    if (e.target.elements.sat.value === '') {
+      props.setName('allsatellites')
+    } else {
+      let allow = false
+      Object.keys(props.data).map((key) => {
+        if (key.split(' iteration')[0] === e.target.elements.sat.value){
+  
+          allow = true
+        }
+    })
+    if (allow) {
+      props.setName(e.target.elements.sat.value);
+    } else {
+      window.alert('Satellite name is not entered correctly, does not exist, or is not available currently'); 
+    }
+      
+    }
 
 
 
@@ -73,10 +89,14 @@ function Dynamic(props) {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label class="form-label" style={{ fontSize: '20px' }}> The following data is real-time at the time in year/month/day/hour/minute/second format: 2023/03/17/03/26/16 </label>
-          {/* <input type="text" name='start' defaultValue={start} /> */}
+          <label className="form-label" style={{ fontSize: '20px' }}> Enter the start time: </label>
+           <input type="text" name='time' defaultValue={time} className="form-control" /> 
           <br />
+          <label className="form-label" style={{ fontSize: '20px' }}> Enter the satellite name: </label>
+          <input type="text" name='sat' defaultValue='' className="form-control" /> 
+          
           <br />
+          
         </div>
 
         {/* <div>
@@ -89,7 +109,7 @@ function Dynamic(props) {
 
         </div> */}
 
-        {/* <button type="submit">Submit</button> */}
+         <button type="submit" className="btn btn-primary">Submit</button> 
       </form>
 
     </div>

@@ -35,12 +35,40 @@ function Static(props) {
   
   }, [send]);
 
+  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     //  console.log(e);
-    setCurr(e.target.elements.current.value);
-    props.setStartTime(curr);
+    setCurr(e.target.elements.time.value);
+    props.setStartTime(e.target.elements.time.value);
+
+
+    if (e.target.elements.sat.value === '') {
+      props.setName('allsatellites')
+    } else {
+      let allow = false
+      Object.keys(props.data).map((key) => {
+
+        if (key.split(' iteration')[0] === e.target.elements.sat.value){
+  
+          allow = true
+        }
+    })
+
+
+    if (allow) {
+      props.setName(e.target.elements.sat.value);
+    } else {
+      window.alert('Satellite name is not entered correctly, does not exist, or is not available currently'); 
+    }
+
+
+      
+    }
+    
+    
    
     setSend(!send);
 
@@ -62,14 +90,17 @@ function Static(props) {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label class="form-label" style={{ fontSize: '20px' }}> The following data is real-time at the time in year/month/day/hour/minute/second format: {curr}</label>
-          {/* <input type="text" name='current' defaultValue={curr} class="form-control" /> */}
+          <label className="form-label" style={{ fontSize: '20px' }}> Enter the start time: </label>
+          <input type="text" name='time' defaultValue={curr} className="form-control" /> 
+          <br />
+          <label className="form-label" style={{ fontSize: '20px' }}> Enter the satellite name: </label>
+          <input type="text" name='sat' defaultValue='' className="form-control" /> 
           <br />
         </div>
 
         
 
-        {/* <button type="submit" class="btn btn-primary">Submit</button> */}
+        <button type="submit" className="btn btn-primary">Submit</button> 
       </form>
       
     </div>
