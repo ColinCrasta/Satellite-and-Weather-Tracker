@@ -3,11 +3,11 @@ import MapDynamic from './Components/MapDynamic';
 import Dynamic from './Components/Dynamic';
 import Static from './Components/Static';
 import MapStatic from './Components/MapStatic';
-import './Positioning.css';
+import './Styling/Positioning.css';
 import {getParsedData} from './Functions/Fetch';
 import moment from 'moment';
 import Nav from "./Components/Navigationbar";
-import './Color.css'
+import './Styling/Color.css'
 
 
 function Positioning() {

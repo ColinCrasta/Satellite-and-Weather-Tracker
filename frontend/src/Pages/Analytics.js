@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {getParsedWeatherData, getParsedData, getRequestData, sendRequestData} from './Functions/Fetch';
 import moment from 'moment';
 import Nav from "./Components/Navigationbar";
-import './Color.css'
+import './Styling/Color.css'
 
 
 function Analytics() {

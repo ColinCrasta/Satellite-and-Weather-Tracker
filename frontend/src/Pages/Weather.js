@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import './Positioning.css';
+import './Styling/Positioning.css';
 import {getParsedWeatherData} from './Functions/Fetch';
 import {Line} from 'react-chartjs-2';
 import {Chart as ChartJs,
@@ -13,7 +13,7 @@ import {Chart as ChartJs,
 
 import moment from 'moment';
 import Nav from "./Components/Navigationbar";
-import './Color.css'
+import './Styling/Color.css'
 
 
 
