@@ -102,7 +102,7 @@ function Analytics() {
   }, [satData]);
 
   useEffect(() => {
-    console.log(weatherData);
+    // console.log(weatherData);
     let count = 0;
     let addTable;
     try {
@@ -182,10 +182,29 @@ function Analytics() {
     }
   };
 
-  const handleStation = (e) => {
+  const fetchSendWeather = async (weather) => {
+    const weatherData = { weather: weather };
+    return fetch("http://localhost:5000/analytics/weatherdata", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(weatherData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return;
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleStation = async (e) => {
     e.preventDefault();
 
-    setGround(e.target.elements.end.value);
+    window.alert("The weather information has been stored");
+    await fetchSendWeather(weatherData[0]);
+
+    // setGround(e.target.elements.end.value);
 
     setSend(!send);
   };
@@ -278,7 +297,9 @@ function Analytics() {
               <br />
             </div>
 
-            {/* <button type="submit">Submit</button> */}
+            <button type="submit" class="btn btn-primary btn-rounded">
+              Store Weather
+            </button>
           </form>
           <br />
           <div class="table table-secondary">

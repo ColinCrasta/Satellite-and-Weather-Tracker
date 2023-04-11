@@ -46,7 +46,7 @@ routerDB.post("/", async (req, res) => {
   
       INSERT INTO users ("userID", username, password, admin, approved, "loggedIn") VALUES (13, 'colin1234', '9966a3a51ae99da7b6e06df0b8919a06b62b5cab7f475bdb5478dbe97efbbb14', true, true, false);
   
-      INSERT INTO users ("userID", username, password, admin, approved, "loggedIn") VALUES (10, 'n/a', 'a683c5c5349f6f7fb903ba8a9e7e55d0ba1b8f03579f95be83f4954c33e81098', false, true, false);
+      INSERT INTO users ("userID", username, password, admin, approved, "loggedIn") VALUES (10, 'n/', 'a683c5c5349f6f7fb903ba8a9e7e55d0ba1b8f03579f95be83f4954c33e81098', false, true, false);
   
       INSERT INTO "satRequest" ("satRequestID", "userID", "satID", "lastAltitude", "lastLocation", "lastOrbitalSpeed", "lastOrbitalPeriod", "lastPositionVector", "groundStationDist", "dateRecorded") VALUES (2, 13, 5, 2500, '-62:27', '[-2.669373    2.72457286 -6.82410132]', '100', '[-5533.71185589 2465.19466632 2500]', 14949, '2023:03:15:12:50:13' );
   
