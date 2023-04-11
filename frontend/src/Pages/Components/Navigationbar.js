@@ -48,6 +48,11 @@ function Navigationbar(props) {
                   Load Balancing
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/userpolicy" className="nav-link">
+                  User Policy
+                </Link>
+              </li>
             </ul>
             <button
               onClick={handleLogout}

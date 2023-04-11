@@ -20,7 +20,7 @@ function LoginForm(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        return data.approved;
+        return [data.approved, data.userApproved];
       })
       .catch((error) => console.error(error));
   };
@@ -33,9 +33,12 @@ function LoginForm(props) {
     const approved = await fetchLogin(name, pw);
     // console.log('approved:', approved);
 
-    if (approved) {
+    if (approved[0] && approved[1]) {
+      localStorage.setItem("name", name);
       props.setName(name);
       props.setLoggedIn(true);
+    } else if (approved[0] && !approved[1]) {
+      window.alert("User is not approved");
     } else {
       window.alert("Username or password is incorrect");
     }
@@ -57,7 +60,7 @@ function LoginForm(props) {
   };
 
   return (
-    <div class="bg-custom text-center">
+    <div className="bg-custom text-center">
       <div>
         <br />
         <h1> Login </h1>
@@ -83,12 +86,15 @@ function LoginForm(props) {
           <br />
           <br />
         </div>
-        <button onClick={handleRegister} class="btn btn-primary btn-rounded-3">
+        <button
+          onClick={handleRegister}
+          className="btn btn-primary btn-rounded-3"
+        >
           Register Now
         </button>
         <br />
         <br />
-        <button type="submit" class="btn btn-primary btn-rounded-3">
+        <button type="submit" className="btn btn-primary btn-rounded-3">
           Login
         </button>
       </form>

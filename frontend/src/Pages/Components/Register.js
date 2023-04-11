@@ -81,7 +81,7 @@ function Register(props) {
   };
 
   return (
-    <div class="bg-custom text-center">
+    <div className="bg-custom text-center">
       <div>
         <br />
         <h1> Register </h1>
@@ -107,12 +107,12 @@ function Register(props) {
           <br />
           <br />
         </div>
-        <button onClick={handleBack} class="btn btn-primary btn-rounded">
+        <button onClick={handleBack} className="btn btn-primary btn-rounded">
           Back
         </button>
         <br />
         <br />
-        <button type="submit" class="btn btn-primary btn-rounded">
+        <button type="submit" className="btn btn-primary btn-rounded">
           Register
         </button>
       </form>
