@@ -11,25 +11,6 @@ function LB() {
     setFirst(true);
   }, []);
 
-  function createTable(data) {
-    let count = 0;
-    let table;
-
-    table = data.map((sat) => {
-      count++;
-      return (
-        <>
-          <td>{sat["satelliteid"]}</td>
-          <td>{sat["connected"]}</td>
-          <td>{sat["distance"]}</td>
-          <td>{sat["load"]}</td>
-        </>
-      );
-    });
-
-    return table;
-  }
-
   useEffect(() => {
     let count = 0;
 
@@ -38,21 +19,35 @@ function LB() {
     if (first) {
       tempTable = Object.keys(data).map((key) => {
         console.log(data[key]["time"]);
-        if (true) {
-          count++;
 
-          return (
-            <tr key={count}>
-              <td>{data[key]["time"]}</td>
-              <td>Connected To a Satellite</td>
-              <td>N/A</td>
-              {createTable(data[key]["satellites"])}
+        count++;
+
+        return (
+          <>
+            <tr>
+              <td rowSpan="6">{data[key]["time"]}</td>
+              <td rowSpan="6">{data[key]["groundStation"]}</td>
+
+              {data[key]["groundStation"] === "true" ? (
+                <td rowSpan="6">N/A</td>
+              ) : (
+                <td rowSpan="6">{data[key]["reason"]}</td>
+              )}
             </tr>
-          );
-        }
+            {data[key]["satellites"].map((sat, index) => {
+              return (
+                <tr>
+                  <td>{sat["satelliteid"]}</td>
+                  <td>{sat["connected"]}</td>
+                  <td>{sat["distance"]}</td>
+                  <td>{sat["load"]}</td>
+                </tr>
+              );
+            })}
+          </>
+        );
       });
     }
-
     setTable(tempTable);
   }, [data]);
 
@@ -99,22 +94,29 @@ function LB() {
             <table className="my-table">
               <thead>
                 <tr>
-                  <th>Time</th>
-                  <th>Ground Station Connection</th>
-                  <th>Reason</th>
-                  <th>Satellite ID</th>
-                  <th>Connected</th>
-                  <th>Distance (km)</th>
-                  <th>Load</th>
+                  <th rowSpan="1">Time</th>
+                  <th rowSpan="1">Ground Station Connection</th>
+                  <th rowSpan="1">Reason</th>
+                  <th rowSpan="1">Satellite ID</th>
+                  <th rowSpan="1">Connected</th>
+                  <th rowSpan="1">Distance (km)</th>
+                  <th rowSpan="1">Load</th>
                 </tr>
+
+                {/*  */}
+                {table}
+                {/*  */}
               </thead>
-              <tbody>{table}</tbody>
             </table>
           </div>
           <br />
           <br />
           <br />
         </div>
+
+        <br />
+        <br />
+        <br />
       </div>
     </div>
   );
