@@ -1,55 +1,46 @@
 //Require statements
 
-const path = require('path');
-require('dotenv').config({ path: path.join(path.join(__dirname, '..'), '.env') }); //The .env file will be in the "Web-App folder"
-const cors = require('cors');
-const express = require('express');
+const path = require("path");
+require("dotenv").config({
+  path: path.join(path.join(__dirname, ".."), ".env"),
+}); //The .env file will be in the "Web-App folder"
+const cors = require("cors");
+const express = require("express");
 const app = express();
-const outputURL = require('./Helper-Functions/OutputURL');
-const pool = require('./database'); //Connects to the database
-const bodyParser = require('body-parser')
-const fs = require('fs');
-
-
-
-
+const outputURL = require("./Helper-Functions/OutputURL");
+const pool = require("./database"); //Connects to the database
+const bodyParser = require("body-parser");
+const fs = require("fs");
 
 // Uses port number that is given in an
 // env file or port 5000 otherwise
 const PORT = process.env.PORTBACKEND || 5000;
 
-
 // Sets the view engine to ejs
-app.set('view engine', 'ejs');
-
+app.set("view engine", "ejs");
 
 // Outputs the type of  request,
 // endpoint, and time of the request
 app.use(outputURL);
 
-
 // Middleware that will be used
-app.use(cors()); //Allows requests from various origins to be handled 
-app.use(express.json({ limit: '100mb' })) //creates a req.body that can be handled easily. The 10 mb limit is to not include large requests
+app.use(cors()); //Allows requests from various origins to be handled
+app.use(express.json({ limit: "100mb" })); //creates a req.body that can be handled easily. The 10 mb limit is to not include large requests
 app.use(express.urlencoded({ extended: false })); //Allows us to parse data from forms
 app.use(bodyParser.json());
 
-
-
-
 // Routes
-app.get('/', async (req, res) => {
+app.get("/", async (req, res) => {
   //res.send('Hello World!')
-  const name = 'User to the backend';
-  res.render('index.ejs', { name });
+  const name = "User to the backend";
+  res.render("index.ejs", { name });
 });
-
 
 // // Displays the information in the database
 // app.get('/database', async (req, res) => {
 
 //   try {
-    
+
 //     const satelliteRes = await pool.query(
 //       'SELECT * FROM satellite'
 //     );
@@ -67,7 +58,7 @@ app.get('/', async (req, res) => {
 //     );
 
 //     //console.log('sqlResponse:' + JSON.stringify(sqlResponse.rows));
-    
+
 //     res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
 //   } catch (error) {
 //     console.log(error.message);
@@ -102,15 +93,11 @@ app.get('/', async (req, res) => {
 
 //     INSERT INTO "locationRequest" ("locationRequestID", "userID", location, "lastTemp", "lastPrecipitationAmount", "lastHumidity", "lastPressure", "lastSNR", "lastBER", "lastScheme", "dateRecorded") VALUES (3, 13, '0:0', 40, 5, 13, 3000, 2, 3, 'n/a', '11:25:56 pm');
 
-    
 //     `;
 //     const resetData = await pool.query(
 //       resetQuery
 //     );
 
-
-
-    
 //     const satelliteRes = await pool.query(
 //       'SELECT * FROM satellite'
 //     );
@@ -124,13 +111,11 @@ app.get('/', async (req, res) => {
 //       'SELECT * FROM "locationRequest"'
 //     );
 
-    
 //     res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
 //   } catch (error) {
 //     console.log(error.message);
 //   }
 // });
-
 
 // // Deletes the information in the database
 // app.post('/databased', async (req, res) => {
@@ -148,7 +133,6 @@ app.get('/', async (req, res) => {
 //       deleteQuery
 //     );
 
-    
 //     const satelliteRes = await pool.query(
 //       'SELECT * FROM satellite'
 //     );
@@ -162,91 +146,125 @@ app.get('/', async (req, res) => {
 //       'SELECT * FROM "locationRequest"'
 //     );
 
-    
 //     res.render('db.ejs', {satelliteRes, usersRes, satRequestRes, locationRequestRes});
 //   } catch (error) {
 //     console.log(error.message);
 //   }
 // });
 
-
 //positioning data retrieval
-app.post('/data', async (req, res) => {
-
-  
+app.post("/data", async (req, res) => {
   try {
-    
     console.log(req.body.time);
     console.log(req.body.name);
 
+    fs.writeFile(
+      "C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt",
+      req.body.time + ":" + req.body.name,
+      (err) => {
+        if (err) {
+          console.error(err);
+          return res
+            .status(500)
+            .send("An error occurred while writing to the file");
+        }
+        console.log("File created and data written successfully");
 
-
-    fs.writeFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt', req.body.time + ':' + req.body.name, (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('An error occurred while writing to the file');
+        fs.readFile(
+          "C:/Users/Colin/Desktop/SharedFiles/Positioning/Response/data.txt",
+          "utf-8",
+          (err, data) => {
+            if (err) throw err;
+            console.log("File read successfully");
+            // console.log('Data:', data);
+            res.send({ file: data });
+          }
+        );
       }
-      console.log('File created and data written successfully');
-    
- 
-
-    fs.readFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Response/data.txt', 'utf-8', (err, data) => {
-      if (err) throw err;
-      console.log('File read successfully');
-      // console.log('Data:', data);
-      res.send({ file: data });
-    });
-
-
-  });
+    );
   } catch (error) {
     console.log(error.message);
   }
 });
-
 
 //weather data retrieval
-app.get('/weather', async (req, res) => {
+app.get("/weather", async (req, res) => {
   try {
-    fs.writeFile('C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt', 'testing', (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('An error occurred while writing to the file');
-      }
-      console.log('File created and data written successfully');
-    
+    fs.writeFile(
+      "C:/Users/Colin/Desktop/SharedFiles/Positioning/Request/request.txt",
+      "testing",
+      (err) => {
+        if (err) {
+          console.error(err);
+          return res
+            .status(500)
+            .send("An error occurred while writing to the file");
+        }
+        console.log("File created and data written successfully");
 
-// './Data/weather_data.json'
-    fs.readFile('C:/Users/Colin/Desktop/SharedFiles/weather/Response/weather_data.json', 'utf-8', (err, data) => {
-      if (err) throw err;
-      console.log('File read successfully');
-      // console.log('Data:', data);
-      res.send({ file: data });
-    });
-  });
+        // './Data/weather_data.json'
+        fs.readFile(
+          "C:/Users/Colin/Desktop/SharedFiles/weather/Response/weather_data.json",
+          "utf-8",
+          (err, data) => {
+            if (err) throw err;
+            console.log("File read successfully");
+            // console.log('Data:', data);
+            res.send({ file: data });
+          }
+        );
+      }
+    );
   } catch (error) {
     console.log(error.message);
   }
-
-
-  
 });
 
+//load balancing data retrieval
+app.post("/lb", async (req, res) => {
+  try {
+    console.log(req.body.time);
+    console.log(req.body.name);
 
+    fs.writeFile(
+      "C:/Users/Colin/Desktop/SharedFiles/Load Balancing/Request/request.txt",
+      req.body.time + ":" + req.body.name,
+      (err) => {
+        if (err) {
+          console.error(err);
+          return res
+            .status(500)
+            .send("An error occurred while writing to the file");
+        }
+        console.log("File created and data written successfully");
 
+        fs.readFile(
+          "C:/Users/Colin/Desktop/SharedFiles/Load Balancing/Response/data.txt",
+          "utf-8",
+          (err, data) => {
+            if (err) throw err;
+            console.log("File read successfully");
+            // console.log('Data:', data);
+            res.send({ file: data });
+          }
+        );
+      }
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 //Routers
-app.use('/login', require('./Routes/Login'));
-app.use('/database', require('./Routes/DB.js'));
-app.use('/database/d', require('./Routes/DB.js'));
-app.use('/analytics', require('./Routes/Analytics'));
+app.use("/login", require("./Routes/Login"));
+app.use("/database", require("./Routes/DB.js"));
+app.use("/database/d", require("./Routes/DB.js"));
+app.use("/analytics", require("./Routes/Analytics"));
 
-
-
-// Listens to a specific port number 
+// Listens to a specific port number
 // and displays the port number
 app.listen(PORT, () => {
   const time = new Date().toLocaleTimeString();
-  
-    console.log(`Server started on port ${PORT}` + ' at ' + time)
+
+  console.log(`Server started on port ${PORT}` + " at " + time);
 });

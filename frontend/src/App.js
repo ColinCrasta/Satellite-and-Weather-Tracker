@@ -6,6 +6,7 @@ import Positioning from './Pages/Positioning';
 import Analytics from './Pages/Analytics';
 import Login from './Pages/Login';
 import UserPolicy from './Pages/UserPolicy';
+import LB from './Pages/LB';
 import {Routes, Route} from 'react-router-dom';
 
 
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/analytics" element={<Analytics/>} > </Route>
       <Route exact path="/positioning" element={<Positioning/>} > </Route>
       <Route exact path="/userpolicy" element={<UserPolicy/>} > </Route>
+      <Route exact path="/lb" element={<LB/>} > </Route>
       </Routes>
 
     </div>

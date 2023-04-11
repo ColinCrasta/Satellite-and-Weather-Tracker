@@ -1,32 +1,29 @@
 import React, { useState } from "react";
 
-
 function LoginForm(props) {
-    //console.log(props);
-    
+  //console.log(props);
 
-    //Stores the login information usign states
+  //Stores the login information usign states
   const [name, setName] = useState("n/a");
   const [pw, setPW] = useState("n/a");
 
-
-
-  //Send the login information to the server for 
-//verification
-  const fetchLogin = async(uname, pword) => {
-    const loginInfo = {username: uname, password: pword};
-    return fetch('http://localhost:5000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginInfo)
+  //Send the login information to the server for
+  //verification
+  const fetchLogin = async (uname, pword) => {
+    const loginInfo = { username: uname, password: pword };
+    return fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginInfo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data.approved;
       })
-      .then(response => response.json())
-      .then(data => {return data.approved;})
-      .catch(error => console.error(error));
-      
-  }
+      .catch((error) => console.error(error));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,40 +37,30 @@ function LoginForm(props) {
       props.setName(name);
       props.setLoggedIn(true);
     } else {
-      window.alert('Username or password is incorrect'); 
+      window.alert("Username or password is incorrect");
     }
-    
-    
   };
-
 
   const handleName = (e) => {
     e.preventDefault();
-    setName(e.target.value)
-
+    setName(e.target.value);
   };
 
   const handlePW = (e) => {
     e.preventDefault();
-    setPW(e.target.value)
-
+    setPW(e.target.value);
   };
-
 
   const handleRegister = (e) => {
     e.preventDefault();
     props.setRegister(true);
-
   };
 
-
-
-
   return (
-
-    <div>
-        <div>
-      <h1> Login </h1>
+    <div class="bg-custom text-center">
+      <div>
+        <br />
+        <h1> Login </h1>
       </div>
       <br />
       <br />
@@ -81,31 +68,32 @@ function LoginForm(props) {
       <form onSubmit={handleSubmit}>
         <div>
           <label> Username: </label>
-          <input type="text" value={name} onChange={handleName}/>
+          <input type="text" value={name} onChange={handleName} />
           <br />
           <br />
         </div>
 
         <div>
-            {/* Setting the type to password makes sure
+          {/* Setting the type to password makes sure
             the password input is not revealed but for 
             user experience it is left at "text"*/}
           <label> Password: </label>
-          <input type="text" value={pw} onChange={handlePW}/>
+          <input type="password" value={pw} onChange={handlePW} />
 
           <br />
           <br />
-
         </div>
-        <button onClick={handleRegister} class="btn btn-primary btn-rounded-3">Register Now</button>
+        <button onClick={handleRegister} class="btn btn-primary btn-rounded-3">
+          Register Now
+        </button>
         <br />
         <br />
-        <button type="submit" class="btn btn-primary btn-rounded-3">Login</button>
+        <button type="submit" class="btn btn-primary btn-rounded-3">
+          Login
+        </button>
       </form>
     </div>
   );
 }
-
-
 
 export default LoginForm;
