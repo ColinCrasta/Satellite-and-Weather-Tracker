@@ -44,7 +44,7 @@ routerDB.post("/", async (req, res) => {
     const resetQuery = `
       INSERT INTO satellite ("satID", name) VALUES (5, 'telesat5');
   
-      INSERT INTO users ("userID", username, password, admin, approved, "loggedIn") VALUES (13, 'colincrasta', '06f77d659b533c4aaf9c33076d42fe6554b76b0df9eda234b7009c7120e330ac', true, true, false);
+      INSERT INTO users ("userID", username, password, admin, approved, "loggedIn") VALUES (13, 'colin1234', '9966a3a51ae99da7b6e06df0b8919a06b62b5cab7f475bdb5478dbe97efbbb14', true, true, false);
   
       INSERT INTO users ("userID", username, password, admin, approved, "loggedIn") VALUES (10, 'n/a', 'a683c5c5349f6f7fb903ba8a9e7e55d0ba1b8f03579f95be83f4954c33e81098', false, true, false);
   
