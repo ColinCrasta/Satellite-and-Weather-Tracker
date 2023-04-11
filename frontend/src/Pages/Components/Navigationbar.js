@@ -2,17 +2,24 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import Login from "../Login";
 
-function Navigationbar(props) {
+function Navigationbar() {
   const handleLogout = (e) => {
     e.preventDefault();
-    props.setLoggedIn(false);
+    localStorage.removeItem("name");
+    localStorage.removeItem("admin");
+    window.location.href = "/";
+  };
+
+  const getAdmin = () => {
+    console.log(typeof localStorage.getItem("admin"));
+    return localStorage.getItem("admin");
   };
 
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand">
+          <Link to="/" className="navbar-brand" onClick={handleLogout}>
             Login
           </Link>
           <button
@@ -48,17 +55,21 @@ function Navigationbar(props) {
                   Load Balancing
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/userpolicy" className="nav-link">
-                  User Policy
-                </Link>
-              </li>
+              {getAdmin() === "true" ? (
+                <li className="nav-item">
+                  <Link to="/userpolicy" className="nav-link">
+                    User Policy
+                  </Link>
+                </li>
+              ) : (
+                <></>
+              )}
             </ul>
             <button
               onClick={handleLogout}
               className="btn btn-outline-secondary me-2"
             >
-              Logout {props.name}
+              Logout {localStorage.getItem("name")}
             </button>
           </div>
         </div>

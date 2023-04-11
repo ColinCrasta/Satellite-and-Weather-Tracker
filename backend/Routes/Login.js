@@ -19,11 +19,24 @@ router.post("/", async (req, res) => {
   if (outputUser.rows[0]["exists"]) {
     const queryApproved = "SELECT approved FROM users WHERE username = $1";
     const outputApproved = await pool.query(queryApproved, username);
-    console.log(outputApproved);
+    // console.log(outputApproved);
     if (outputApproved.rows[0]["approved"]) {
       userApproved = true;
     } else {
       userApproved = false;
+    }
+  }
+
+  let isAdmin = false;
+
+  if (outputUser.rows[0]["exists"]) {
+    const queryAdmin = `SELECT admin FROM users WHERE username = $1;`;
+    const outputAdmin = await pool.query(queryAdmin, [req.body.username]);
+    console.log(outputAdmin);
+    if (outputAdmin.rows[0]["admin"]) {
+      isAdmin = true;
+    } else {
+      isAdmin = false;
     }
   }
 
@@ -43,11 +56,12 @@ router.post("/", async (req, res) => {
     incorrect = "both";
   }
 
-  console.log(req.body);
+  // console.log(req.body);
   res.send({
     approved: approved,
     incorrect: incorrect,
     userApproved: userApproved,
+    isAdmin: isAdmin,
   });
 });
 
@@ -60,6 +74,40 @@ router.post("/register", async (req, res) => {
   const data = await pool.query(query);
 
   res.send({ inserted: true });
+});
+
+//Gets the user information about if they are approved and their admin status
+router.post("/getusers", async (req, res) => {
+  const queryInfo = "SELECT * FROM users";
+
+  const outputInfo = await pool.query(queryInfo);
+  // console.log(outputInfo["rows"]);
+
+  res.send({
+    userInfo: outputInfo["rows"],
+  });
+});
+
+//Onverts the user into an admin
+router.post("/adminuser", async (req, res) => {
+  const query = `UPDATE users SET admin = $1 WHERE username = $2;`;
+  console.log(req.body.admin, req.body.username);
+  const data = await pool.query(query, [req.body.admin, req.body.username]);
+});
+
+//Approves the user
+router.post("/approveuser", async (req, res) => {
+  const query = `UPDATE users SET approved = $1 WHERE username = $2;`;
+  console.log(req.body.approved, req.body.username);
+  const data = await pool.query(query, [req.body.approved, req.body.username]);
+});
+
+//Checks if the user is an administrator
+router.post("/isadmin", async (req, res) => {
+  const query = `SELECT admin FROM users WHERE username = $1;`;
+  console.log(req.body.username);
+  const data = await pool.query(query, [req.body.username]);
+  // console.log(data["rows"]["approved"], "vyyfifif");
 });
 
 module.exports = router;

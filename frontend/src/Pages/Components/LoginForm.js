@@ -20,7 +20,7 @@ function LoginForm(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        return [data.approved, data.userApproved];
+        return [data.approved, data.userApproved, data.isAdmin];
       })
       .catch((error) => console.error(error));
   };
@@ -35,6 +35,7 @@ function LoginForm(props) {
 
     if (approved[0] && approved[1]) {
       localStorage.setItem("name", name);
+      localStorage.setItem("admin", approved[2]);
       props.setName(name);
       props.setLoggedIn(true);
     } else if (approved[0] && !approved[1]) {

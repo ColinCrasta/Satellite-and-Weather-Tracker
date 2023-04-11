@@ -49,6 +49,21 @@ function Login() {
           <br />
           <br />
           <br />
+          {display.type === Nav ? (
+            <div className="d-flex justify-content-center">
+              <h1>Select A Page From The Navigation Bar</h1>
+            </div>
+          ) : (
+            <h1></h1>
+          )}
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <br />
           <br />
           <br />
