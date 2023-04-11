@@ -79,7 +79,6 @@ function Weather() {
             <td>{data[key]["pressure"]}</td>
             <td>{data[key]["snr"]}</td>
             <td>{data[key]["ber"]}</td>
-            <td></td>
             <td>{data[key]["capacity"]}</td>
           </tr>
         );
@@ -222,7 +221,6 @@ function Weather() {
                   <th>Pressure (mbar)</th>
                   <th>SNR (dB)</th>
                   <th>BER</th>
-                  <th>Modulation Scheme</th>
                   <th>Channel Capacity (bps)</th>
                 </tr>
               </thead>

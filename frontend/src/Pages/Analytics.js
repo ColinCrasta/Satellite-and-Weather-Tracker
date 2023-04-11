@@ -114,7 +114,6 @@ function Analytics() {
           <td>{weatherData[0]["pressure"]}</td>
           <td>{weatherData[0]["snr"]}</td>
           <td>{weatherData[0]["ber"]}</td>
-          <td></td>
           <td>{weatherData[0]["capacity"]}</td>
         </tr>
       );
@@ -312,7 +311,7 @@ function Analytics() {
                   <th>Pressure (mbar)</th>
                   <th>SNR (dB)</th>
                   <th>BER</th>
-                  <th>Modulation Scheme</th>
+
                   <th>Channel Capacity (bps)</th>
                 </tr>
               </thead>
