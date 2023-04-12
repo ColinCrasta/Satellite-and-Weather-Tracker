@@ -68,8 +68,8 @@ function Dynamic(props) {
         Current Time (YYYY/MM/DD/HH/mm/ss): {time}
       </p>
       <p style={{ fontSize: "18px" }}>
-        The satellite trajectories for the next one hour and their positions
-        every 3 minutes are displayed on the globe below as yellow dots
+        The satellite trajectories for the next 45 minutes and their positions
+        in 3 minute intervals are displayed on the globe below as yellow dots
       </p>
 
       {/* <form onSubmit={handleSubmit}>
