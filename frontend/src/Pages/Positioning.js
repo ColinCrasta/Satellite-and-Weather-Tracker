@@ -166,7 +166,7 @@ function Positioning() {
       setMap(
         <MapDynamic data={data} startTime={startTime} endTime={endTime} />
       );
-      setButton("Single Location");
+      setButton("Current Location");
     } else {
       setDisplay(
         <>
