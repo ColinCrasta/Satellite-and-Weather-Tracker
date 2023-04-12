@@ -270,6 +270,8 @@ function Weather() {
                   "capacity"
                 )}
               ></Line>
+              <br />
+              <br />
             </div>
           </div>
         </div>
