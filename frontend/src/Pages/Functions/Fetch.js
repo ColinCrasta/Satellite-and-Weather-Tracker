@@ -39,7 +39,7 @@ export const getPosFile = async (time, name) => {
   const bodyData = { time: time, name: name };
 
   const response = await fetch("http://localhost:5000/data", {
-    method: "POSt",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
