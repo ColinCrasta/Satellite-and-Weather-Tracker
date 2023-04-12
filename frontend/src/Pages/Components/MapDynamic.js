@@ -50,7 +50,7 @@ function MapDynamic(props) {
 
       //marker for the ground station
       const ottawaMarker = new mapboxgl.Marker()
-        .setLngLat([-75, 45])
+        .setLngLat([-75.6972, 45.4215])
         .addTo(mapbox);
 
       //the coordinates will be in an array that contains 2d arrays with the coordiantes in longitude and latitude form
